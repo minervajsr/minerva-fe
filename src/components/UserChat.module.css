@@ -1,0 +1,41 @@
+/* Style for chat bubble container */
+.chatBubble {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 6px 0;
+  max-width: 80%; /* Adjust as needed */
+  width: fit-content;
+}
+
+/* Style for chat bubble with messages sent by currentUser */
+.chatBubble.userA {
+  background: #007bff;
+  color: white;
+  align-self: flex-end;
+}
+
+/* Style for chat bubble with messages received by currentUser */
+.chatBubble.receivedUser {
+  background-color: #f0f0f0; /* Light gray color */
+  color: #000;
+  align-self: flex-start;
+}
+
+.chatInputContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 12%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+.chatInputContainer > input {
+  width: 85%;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bdbdbd;
+  margin-right: 10px;
+}

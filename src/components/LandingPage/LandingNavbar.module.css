@@ -1,0 +1,84 @@
+/* LandingNavbar.module.css */
+
+.LandingNavbar {
+  background-color: #fff;
+  height: 85px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6%;
+  transition: 0.6s;
+}
+
+.logo > img {
+  width: 80%;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  color: var(--font-color-primary, #3c3a36);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+  text-transform: uppercase;
+}
+
+.menu a:hover {
+  color: #0061fe;
+}
+
+.buttons button {
+  border: none;
+  padding: 8px 20px;
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.signup {
+  background-color: #0061fe;
+  color: #fff;
+  border: 2px solid #0061fe !important;
+  border-radius: 5px;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.login {
+  background-color: #fff;
+  border: 2px solid #0061fe !important;
+  border-radius: 5px;
+  color: #0061fe;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.signup:hover,
+.login:hover {
+  opacity: 0.8;
+}

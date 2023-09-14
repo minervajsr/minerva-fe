@@ -1,0 +1,139 @@
+/* FooterContainer */
+.footer {
+  background-color: #fff;
+  padding: 40px 0;
+  padding-bottom: 0%;
+}
+
+/* Footer Column */
+.footerColumn {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Footer Row */
+.footerRow {
+  flex: 1;
+  margin-right: 20px;
+  padding: 20px 0px;
+}
+.footerRow > p {
+  color: var(--black-black-30, #514f6e);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  width: 90%;
+}
+.footerRow > h3 {
+  color: #0061fe;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%; /* 30px */
+  margin-bottom: 20px;
+}
+/* Logo */
+.logo {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+/* Contact List */
+.contactList {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.contactList li {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  color: var(--black-black-30, #514f6e);
+}
+
+/* Social Icons */
+.socialIcons {
+  display: flex;
+}
+
+.socialIcons a {
+  margin-right: 10px;
+}
+
+.socialIcons img {
+  max-width: 24px;
+}
+
+/* Query Input */
+.queryInput {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #d4d7e3;
+  background: #f7fbff;
+}
+
+/* Send Button */
+.sendButton {
+  background-color: #0061fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-family: Poppins;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Footer Banner */
+.footerBanner {
+  text-align: center;
+  margin-top: 20px;
+  background-color: #0061fe;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.socialIcons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.social {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0061fe;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+}

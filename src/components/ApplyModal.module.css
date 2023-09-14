@@ -1,0 +1,223 @@
+/* ApplyModal.module.css */
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 90%; /* Adjust the width as needed */
+  max-width: 600px; /* Adjust the maximum width as needed */
+}
+
+.modalContent h2 {
+  font-size: 24px;
+  color: #384260;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%; /* 22.5px */
+  margin-bottom: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column {
+  flex: 1;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+label {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="tel"],
+.form textarea {
+  border-radius: 8px;
+  border: 1px solid #d4d7e3;
+  background: #f7fbff;
+  color: #8897ad;
+  width: 100%;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 16px */
+  letter-spacing: 0.16px;
+  padding: 12px;
+  margin: 10px 0px;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form h3 {
+  color: #384260;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%; /* 22.5px */
+  margin-bottom: 10px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.column {
+  display: flex;
+  flex: 1;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%; /* 16px */
+  letter-spacing: 0.16px;
+}
+
+.form button:hover {
+  background-color: #0056b3;
+}
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.formRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.formColumn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 14px;
+}
+
+.formColumn > label {
+  color: #0c1421;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.formColumn > input {
+  border-radius: 12px;
+  border: 2px solid #eff0f6;
+  background: #fff;
+  color: #8897ad;
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 12px;
+  width: 100%;
+}
+.uploadedFileData {
+  border: 2px solid #0061fe;
+  border-radius: 8px;
+  height: 100%;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e255e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.uploadedFileDataBlank {
+  border-radius: 8px;
+  height: 100%;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #8897ad;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: context-menu;
+}
+
+/* ApplyModal.module.css */
+
+/* Add your existing styles here */
+
+.uploadedFileDataBlank {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.loadingAnimation {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0061fe;
+  border-top: 2px solid transparent;
+  border-radius: 50px;
+  animation: spin 0.8s linear infinite;
+}
+
+.uploadProgress {
+  height: 2px;
+  background-color: #0061fe;
+  transition: width 0.3s ease-in-out;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

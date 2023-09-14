@@ -1,0 +1,36 @@
+.recommendedSectionContainer {
+  margin: 0 6%;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recommendedSectionContainer > h1 {
+  width: 55%;
+  font-family: Poppins;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 61.6px */
+  color: #0f172a;
+}
+.recommendedSectionCardsContainer {
+  margin: 0 6%;
+  padding: 0 3%;
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+.loadMoreBtn {
+  background: transparent;
+  border: 2px solid #0061fe;
+  padding: 18px 38px;
+  color: #0061fe;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+}

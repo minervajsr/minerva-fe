@@ -1,0 +1,50 @@
+.header {
+  width: 100%;
+  height: 23vh;
+  background-color: #0061fe;
+  padding: 0 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url(../assets/abstract.svg);
+  /* background-repeat: no-repeat; */
+  background-position: top right;
+  background-size: 20%;
+}
+.header > h1 {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.header > p {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: 40%;
+}
+.jobcardrow {
+  display: flex;
+  flex-direction: row;
+  padding: 5rem 6%;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: -60px;
+  flex-wrap: wrap;
+  background-color: rgba(247, 247, 251, 0.3);
+}
+.container {
+}
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 23%;
+  margin-top: -60px;
+  margin-bottom: 1.2rem;
+}

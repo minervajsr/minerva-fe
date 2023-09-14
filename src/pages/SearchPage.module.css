@@ -1,0 +1,207 @@
+.searchContainer {
+  padding: 24px 6%;
+}
+.searchHeading {
+  color: #384260;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 10px;
+}
+/* SearchPage.module.css */
+.searchContainer {
+  display: flex;
+  padding: 24px 6%;
+}
+
+.filterContainer {
+  width: 25%;
+  padding-right: 20px;
+}
+
+.filterCard {
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 2px 12px -5px rgba(0, 0, 0, 0.37);
+  padding: 16px;
+}
+
+.filterTitle {
+  color: #0f172a;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.clearAll {
+  color: #fa404b;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.resultsContainer {
+  width: 75%;
+}
+
+.searchContent {
+  padding: 0 20px;
+  margin-top: -25px;
+}
+
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Skill Tag */
+.skillTag {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 4px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Style for Range Sliders */
+input[type="range"] {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Add more styles as needed */
+.rangeSlider {
+  position: relative;
+}
+
+.rangeSlider input[type="range"] {
+  width: 100%;
+}
+.sliderLabel {
+  margin: 10px 0px;
+}
+
+.rangeLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 12px;
+}
+.inputContainer > h4 {
+  margin-bottom: 10px;
+  color: #0f172a;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.inputContainer > input {
+  border-radius: 12px;
+  border: 1px solid #d4d7e3;
+  background: #f7fbff;
+  color: #8897ad;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0.16px;
+  padding: 12px;
+  margin-bottom: 15px;
+}
+.inputContainer > select {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid #d4d7e35a;
+  background: #f7fbff;
+  color: #8897ad;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0.16px;
+  padding: 10px;
+  outline: none;
+  display: block;
+  padding: 0.8rem 0.5rem;
+  /** for the dropdown indicator */
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+.new > form {
+  display: flex;
+  padding: 0px 10px;
+  gap: 15px;
+}
+.form-group {
+  display: block;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group label {
+  position: relative;
+  cursor: pointer;
+  color: rgba(56, 66, 96, 0.7);
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+}
+
+.form-group label:before {
+  content: "";
+  background-color: transparent;
+  border: 2px solid #b3b3b3;
+  border-radius: 3px;
+
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.form-group input:checked + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 7px;
+  width: 4px;
+  height: 12px;
+  border: solid #0061fe;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

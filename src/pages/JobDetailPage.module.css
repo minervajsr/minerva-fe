@@ -1,0 +1,143 @@
+.jobDetailContainer {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem;
+  margin-top: 10px;
+}
+
+.jobDetailLeft {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  border-right: 1px solid #e0e0e0;
+}
+.jobSuggestionsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  padding-top: 0;
+}
+.jobDetailRight {
+  width: 75%;
+  padding: 0 2rem;
+}
+.jobDetailRight > div > div > h2 {
+  color: #384260;
+  font-family: Poppins;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%; /* 45px */
+}
+.jobDetailRight > h3 {
+  color: #384260;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%; /* 22.5px */
+  margin-top: 16px;
+}
+.jobDetailRight > div > div > h4 {
+  color: #384260;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+}
+.jobDetailRight > h5 {
+  color: #0061fe;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+}
+.jobOverview > p {
+  color: #384260;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 24px */
+  width: 67%;
+}
+.jobSalary {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.jobSalary > p {
+  color: rgba(56, 66, 96, 0.7);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 27px */
+}
+.jobSalary > h5 {
+  color: #384260;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 33px */
+}
+.tag {
+  display: inline-block;
+  padding: 3px 12px;
+  border: 2px solid #0061fe;
+  margin: 8px;
+  background-color: #eff3ff;
+  color: #0061fe;
+  border-radius: 50px;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+}
+.applyBtn {
+  background-color: #0061fe;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 34px;
+  border: none;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.applyBtnDisabled {
+  background-color: #0061fe;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 8px 34px;
+  border: none;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.5;
+  cursor: not-allowed;
+}

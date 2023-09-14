@@ -1,0 +1,142 @@
+.CompanyDashboardContainer {
+  margin: 20px 6%;
+}
+.CompanyDashboardControls {
+  display: flex;
+  justify-content: space-between;
+}
+.CompanyDashboardControls > .CompanyDashboardControlsRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+.button {
+  background-color: #0061fe;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #e5e5e5;
+  padding-left: 10px;
+  border-radius: 8px;
+}
+.SearchBarIcon {
+  color: #bbbaba;
+}
+.searchContainer > input {
+  border: none;
+  outline: none;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+  color: rgba(30, 37, 94, 0.7);
+  padding: 10px 6px 10px 0px;
+  margin: 3px;
+}
+
+.TableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  background-color: rgba(0, 97, 254, 0.1);
+  padding: 17px 22px;
+  border-radius: 8px;
+}
+.TableHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.TableHeader > div:nth-child(1) {
+  flex: 45%;
+}
+
+.TableHeader > div:nth-child(2) {
+  flex: 20%;
+}
+
+.TableHeader > div:nth-child(3) {
+  flex: 20%;
+  justify-content: center;
+}
+
+.TableHeader > div:nth-child(4) {
+  flex: 15%;
+  justify-content: center;
+}
+.JobDashboardCardContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 17px 22px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  border-radius: 12px;
+}
+.JobDashboardCardContainer > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.JobDashboardCardContainer > div:nth-child(1) {
+  flex: 45%;
+}
+
+.JobDashboardCardContainer > div:nth-child(2) {
+  flex: 20%;
+}
+
+.JobDashboardCardContainer > div:nth-child(3) {
+  flex: 20%;
+  justify-content: center;
+  padding: 0px 50px;
+}
+
+.JobDashboardCardContainer > div:nth-child(4) {
+  flex: 15%;
+  justify-content: center;
+}
+.JobDashboardCardContainer h5 {
+  color: #000;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.JobDashboardCardContainer h6 {
+  color: rgba(56, 66, 96, 0.7);
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.candidates {
+  display: flex;
+  gap: 30px !important;
+}
+.candidates > div > h5:last-child {
+  color: #0061fe;
+}

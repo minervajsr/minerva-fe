@@ -1,0 +1,49 @@
+.AboutSection {
+  padding: 60px 6%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6%;
+}
+.AboutSectionLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ImageHolder {
+  margin: 10px;
+}
+.AboutSectionRight {
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.AboutSectionRight > h1 {
+  color: #0f172a;
+  font-family: Poppins;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 110%; /* 61.6px */
+  margin-bottom: 23px;
+}
+.AboutSectionRight > p {
+  color: #475569;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 28.8px */
+  margin-bottom: 36px;
+}
+.AboutSectionRight > h5 {
+  color: #0061fe;
+
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}

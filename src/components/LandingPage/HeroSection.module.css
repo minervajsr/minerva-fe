@@ -1,0 +1,39 @@
+.heroContainer {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  margin: 70px 0 0 6%;
+  height: calc(100vh - 85px);
+  position: relative;
+}
+.heroContainerLeft {
+  width: 50%;
+}
+.heroContainerLeft > h1 {
+  width: 90%;
+  line-height: 127%;
+  margin-bottom: 23px;
+  color: #1e255e;
+  font-family: Poppins;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 127%; /* 71.12px */
+}
+.heroContainerLeft > h1 > span {
+  color: #0061fe;
+}
+.heroContainerLeft > p {
+  color: #1e255e;
+  width: 70%;
+  line-height: 127%;
+  color: rgba(30, 37, 94, 0.7);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.heroImage {
+  width: 100%;
+}

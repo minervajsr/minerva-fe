@@ -1,0 +1,108 @@
+/* TestimonialSection.module.css */
+.testimonialsSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 4% 6%;
+  background-color: #f7f7fb;
+}
+
+.leftColumn {
+  flex: 1;
+  padding: 20px;
+  max-width: 50%; /* Ensure both columns are equal width */
+}
+.rightColumn {
+  flex: 1;
+  padding: 20px;
+  max-width: 50%; /* Ensure both columns are equal width */
+}
+.testimonialTitle {
+  color: var(--primary-color-1, #4a3aff);
+  font-feature-settings: "clig" off, "liga" off;
+
+  /* Other/18-20-UP */
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 111.111% */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.subTitle {
+  margin-top: 14px;
+  color: var(--neutral-800, #170f49);
+  font-family: Poppins;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 46px;
+}
+
+.subText {
+  margin-top: 14px;
+  color: var(--neutral-700, #514f6e);
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.card {
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--neutral-300, #eff0f6);
+  background: var(--neutral-100, #fff);
+  box-shadow: 0px 5px 14px 0px rgba(8, 15, 52, 0.04);
+  padding: 40px;
+  width: 90%; /* Set the width to 100% to ensure all cards have the same width */
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+}
+.logo {
+  margin-bottom: 15px;
+}
+.logo > img {
+  width: 100px;
+}
+
+.cardText p {
+  color: var(--neutral-700, #514f6e);
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 166.667% */
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.name {
+  color: var(--neutral-800, #170f49);
+  font-family: Poppins;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.designation {
+  color: var(--neutral-700, #514f6e);
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 400;
+}
