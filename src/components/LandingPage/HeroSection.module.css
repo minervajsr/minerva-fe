@@ -56,9 +56,12 @@
   }
   .heroContainerLeft > h1 {
     font-size: 47px;
+    width: 100%;
+    line-height: 118%;
   }
   .heroContainerLeft > p {
     width: 90%;
     font-size: 16px;
+    line-height: 190%;
   }
 }
