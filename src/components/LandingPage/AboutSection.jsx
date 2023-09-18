@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./AboutSection.module.css";
 import pic1 from "../../assets/pic_1.png";
 import pic2 from "../../assets/pic_2.png";
 import pic3 from "../../assets/pic_3.png";
 
 const AboutSection = ({ order, title, description, link, background }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   return (
     <div
       className={styles.AboutSection}
       style={{
-        flexDirection: order ? "row-reverse" : "row",
+        flexDirection: isMobile
+          ? order
+            ? "column"
+            : "column"
+          : order
+          ? "row-reverse"
+          : "row",
         background: background ? background : "#fff",
       }}>
       <div className={styles.AboutSectionLeft}>

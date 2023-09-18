@@ -57,3 +57,25 @@
 .SearchButton:hover {
   background: #0054dd;
 }
+
+@media (max-width: 768px) {
+  .SearchBarContainer {
+    width: 100%;
+  }
+  .SearchBarContainer {
+    height: 68px;
+  }
+  .SearchBarInputContainer {
+    width: 35%;
+    gap: 6px;
+  }
+  .SearchBarInputContainer > input {
+    font-size: 15px;
+  }
+  .SearchButton {
+    font-size: 14px;
+    padding: 0 14px;
+    height: 70%;
+    border-radius: 8px;
+  }
+}

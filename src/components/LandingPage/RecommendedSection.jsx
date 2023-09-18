@@ -1,5 +1,4 @@
 import React from "react";
-
 import styles from "./RecommendedSection.module.css";
 import SwitchComp from "../SwitchComp";
 import CardSection from "./CardSection";

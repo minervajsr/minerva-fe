@@ -27,3 +27,16 @@
   font-weight: 500;
   width: 49%;
 }
+
+@media (max-width: 768px) {
+  .OurCEOSectionContainer {
+    padding: 34px;
+    background: url(../../assets/abstract.svg) left bottom no-repeat,
+      #0061fe no-repeat;
+    background-size: 500px;
+  }
+  .OurCEOSectionContainer > p {
+    width: 100%;
+    font-size: 18px;
+  }
+}

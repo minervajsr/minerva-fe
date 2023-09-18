@@ -15,7 +15,9 @@ const HeroSection = () => {
           keywords to filter job search results and Improving your networking
           skills
         </p>
-        <SearchBar />
+        <div className={styles.searchBarContainer}>
+          <SearchBar />
+        </div>
       </div>
       <div className={styles.heroContainerRight}>
         <img src={hero} alt='hero' className={styles.heroImage} />

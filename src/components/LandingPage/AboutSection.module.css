@@ -47,3 +47,24 @@
   letter-spacing: 0.5px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .AboutSection {
+    flex-direction: column;
+  }
+  .ImageHolder > img {
+    width: 100%;
+  }
+  .AboutSectionRight {
+    padding: 10px 0px;
+    margin-top: 70px;
+  }
+  .AboutSectionRight > h1 {
+    font-size: 38px;
+    margin-bottom: 13px;
+  }
+  .AboutSectionRight > p {
+    font-size: 16px;
+    margin-bottom: 26px;
+  }
+}

@@ -37,3 +37,28 @@
 .heroImage {
   width: 100%;
 }
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .heroContainer {
+    margin: 110px 0px 0px 0px;
+    height: auto;
+    padding: 0 20px;
+    flex-direction: column;
+  }
+  .heroContainerRight {
+    display: none;
+  }
+
+  .heroContainerLeft {
+    width: 100%;
+  }
+  .heroContainerLeft > h1 {
+    font-size: 47px;
+  }
+  .heroContainerLeft > p {
+    width: 90%;
+    font-size: 16px;
+  }
+}
