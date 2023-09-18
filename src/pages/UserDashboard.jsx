@@ -36,7 +36,6 @@ const UserDashboard = () => {
 
   return (
     <div>
-      {/* <NavBar /> */}
       <Header />
 
       <div className={styles.container}>

@@ -38,8 +38,7 @@
   flex-wrap: wrap;
   background-color: rgba(247, 247, 251, 0.3);
 }
-.container {
-}
+
 .searchBarContainer {
   display: flex;
   justify-content: center;
@@ -47,4 +46,28 @@
   margin: 0 23%;
   margin-top: -60px;
   margin-bottom: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    background-size: 80%;
+    height: 22vh;
+  }
+  .header > h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  .header > p {
+    font-size: 12px;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .searchBarContainer {
+    margin: 0 4%;
+    margin-top: -60px;
+    margin-bottom: 1.2rem;
+  }
+  .jobcardrow {
+    justify-content: center;
+  }
 }

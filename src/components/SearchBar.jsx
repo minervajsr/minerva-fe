@@ -58,6 +58,7 @@ const SearchBar = () => {
     }
     return description;
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   return (
     <div className={styles.SearchBarContainer}>
@@ -65,7 +66,7 @@ const SearchBar = () => {
         <FiSearch className={styles.SearchBarIcon} />
         <input
           type='text'
-          placeholder='Job title or keyword'
+          placeholder={`${isMobile ? "Keyword" : "Job title or keyword"}`}
           onChange={(e) => {
             setQuery(e.target.value);
           }}

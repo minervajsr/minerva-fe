@@ -17,3 +17,9 @@
   align-items: center;
   width: 14%;
 }
+
+@media (max-width: 768px) {
+  .NavBarItemsContainer {
+    width: 45%;
+  }
+}
