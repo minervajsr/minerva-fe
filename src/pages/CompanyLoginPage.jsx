@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import authbanner from "../assets/auth-image.svg";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import axios from "axios";
 const CompanyLoginPage = () => {
   const [step, setStep] = useState(1);
@@ -26,11 +29,19 @@ const CompanyLoginPage = () => {
       })
       .then(function (response) {
         console.log("res", response.data);
-        dispatch({ type: "LOGIN", payload: response.data.user });
-        localStorage.setItem("minervauser", JSON.stringify(response.data.user));
-        navigate("/company/dashboard");
+        toast.success("🎉 Authentication Successful");
+
+        setTimeout(() => {
+          dispatch({ type: "LOGIN", payload: response.data.user });
+          localStorage.setItem(
+            "minervauser",
+            JSON.stringify(response.data.user)
+          );
+          navigate("/company/dashboard");
+        }, 1000);
       })
       .catch(function (error) {
+        toast.error("Something went wrong");
         console.log(error);
       });
   };
@@ -39,6 +50,13 @@ const CompanyLoginPage = () => {
     <div>
       <div className={styles.authNavbar}>
         {" "}
+        <ToastContainer
+          className='customToast'
+          position='top-center'
+          hideProgressBar
+          autoClose={2000}
+          closeButton={false}
+        />
         <img
           src={logo}
           alt='logo'

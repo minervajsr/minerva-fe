@@ -22,11 +22,14 @@ const StringList = ({ arrayValue, updateArrayList }) => {
 
   return (
     <div className={styles.StringListContainer}>
-      <ul>
-        {stringList.map((string, index) => (
-          <li key={index}>{string}</li>
-        ))}
-      </ul>
+      <div className={styles.StringListContainerList}>
+        <ul>
+          {stringList.map((string, index) => (
+            <li key={index}>{string}</li>
+          ))}
+        </ul>
+      </div>
+
       <textarea
         value={inputText}
         onChange={handleInputChange}

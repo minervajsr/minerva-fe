@@ -282,7 +282,12 @@ select {
   width: 100%;
   padding: 0px 20px;
 }
-.StringListContainer > ul > li {
+.StringListContainerList {
+  max-height: 25vh;
+  overflow-y: scroll;
+  margin-bottom: 10px;
+}
+.StringListContainer > div > ul > li {
   width: fit-content;
   padding: 6px 12px;
   list-style: none;

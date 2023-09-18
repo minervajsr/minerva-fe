@@ -4,6 +4,10 @@ import styles from "./CompanySignupPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const CompanySignupPage = () => {
   const [step, setStep] = useState(1);
 
@@ -41,9 +45,14 @@ const CompanySignupPage = () => {
     await axios
       .post(url, formData)
       .then(function (response) {
-        navigate("/company-login");
+        toast.success("🎉 Email sent! Check your inbox.");
+
+        setTimeout(() => {
+          navigate("/company-login");
+        }, 1000);
       })
       .catch(function (error) {
+        toast.error("Something went wrong");
         console.log(error);
       });
   };
@@ -57,6 +66,13 @@ const CompanySignupPage = () => {
   };
   return (
     <div>
+      <ToastContainer
+        className='customToast'
+        position='top-center'
+        hideProgressBar
+        autoClose={2000}
+        closeButton={false}
+      />
       <div className={styles.authNavbar}>
         {" "}
         <img

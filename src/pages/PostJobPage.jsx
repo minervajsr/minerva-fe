@@ -13,9 +13,9 @@ import Autocomplete from "react-google-autocomplete";
 import StringList from "../components/StringList";
 import ScreeningQuestionTemplate from "../components/ScreeningQuestionTemplate";
 
-import bigCheck from "../assets/bigCheck.svg";
+import bigCheck from "../assets/bigcheck.svg";
 
-const PostJobPage = ({ totalSteps = 5 }) => {
+const PostJobPage = ({ totalSteps = 6 }) => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
@@ -353,10 +353,10 @@ const PostJobPage = ({ totalSteps = 5 }) => {
         return (
           <div className={styles.jobResults}>
             <img src={bigCheck} alt='' />
-            <h2>Job Posted Successfully</h2>
+            <h2>Job {jobId ? "Updated" : "Created"} Successfully</h2>
             <p>
-              Your job has been posted successfully. You can view your job in
-              your dashboard.
+              Your job has been {jobId ? "updated" : "created"} successfully.
+              You can view your job in your dashboard.
             </p>
             <button
               className={styles.viewButton}

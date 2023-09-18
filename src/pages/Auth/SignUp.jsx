@@ -191,7 +191,6 @@ const SignUp = () => {
         password: formData.password,
       })
       .then(function (response) {
-        toast.success("🎉 You're in! Let the job hunt begin.");
         console.log("res", response.data);
         setTimeout(() => {
           dispatch({ type: "LOGIN", payload: response.data.user });

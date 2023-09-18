@@ -8,6 +8,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { FiShare2, FiEdit } from "react-icons/fi";
 import { RiDeleteBin7Line } from "react-icons/ri";
 import axios from "axios";
+import nojobpost from "../assets/nojobpost.svg";
 
 const JobDashboardCard = ({ jobData, triggerRefresh }) => {
   const navigate = useNavigate();
@@ -166,6 +167,44 @@ const CompanyDashboard = () => {
     return <h1>Loading...</h1>;
   }
 
+  if (jobList && jobList.length === 0) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          gap: "20px",
+          height: "calc(100vh - 80px)",
+        }}>
+        <img
+          src={nojobpost}
+          alt=''
+          style={{
+            width: "26%",
+            objectFit: "contain",
+            marginBottom: "-40px",
+          }}
+        />
+        <h2
+          style={{
+            fontSize: "22px",
+            fontWeight: 600,
+            color: "#1E255E",
+          }}>
+          {" "}
+          No Job Post Found In this Account!{" "}
+        </h2>
+        <button
+          className={styles.button}
+          onClick={() => navigate("/company/post-job")}>
+          Post a Job
+        </button>
+      </div>
+    );
+  }
   return (
     <div className={styles.CompanyDashboardContainer}>
       <div className={styles.CompanyDashboardControls}>
