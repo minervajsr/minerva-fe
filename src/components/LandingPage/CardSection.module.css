@@ -94,3 +94,35 @@
   justify-content: center;
   gap: 5px;
 }
+
+@media (max-width: 768px) {
+  .cardContainer {
+    padding: 20px 18px;
+  }
+  .cardContainer > h2 {
+    font-size: 28px;
+    line-height: 125%; /* 40px */
+  }
+  .salary > h5 {
+    font-size: 16px;
+    line-height: 125%; /* 20px */
+  }
+  .salary > h5 > span {
+    font-size: 15px;
+  }
+  .salary > button {
+    background: #0061fe;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #fff;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+}
