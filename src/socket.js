@@ -2,6 +2,6 @@
 
 import io from "socket.io-client";
 
-const socket = io.connect("http://localhost:4000"); // Initialize socket connection
+const socket = io.connect(import.meta.env.VITE_API_URL); // Initialize socket connection
 
 export default socket;
