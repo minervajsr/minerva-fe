@@ -141,3 +141,72 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .jobDetailLeft {
+    display: none;
+  }
+  .jobDetailRight {
+    width: 100%;
+    padding: 0px !important;
+  }
+  .jobDetailRight > div > div > h2 {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%; /* 45px */
+  }
+  .jobDetailRight > div {
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+  .jobDetailRight > div > div {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+  .jobDetailRight > div > div > h4 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+  }
+  .jobDetailRight > h5 {
+    color: #0061fe;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+  }
+  .jobOverview > p {
+    color: #384260;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 100%;
+  }
+  .rightDataContainer {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    margin-top: 10px !important;
+  }
+  .rightDataContainer > div {
+    width: 100% !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    flex-direction: row-reverse !important;
+    margin-bottom: 10px;
+  }
+  .jobSalary {
+    width: 100% !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    margin-top: 10px !important;
+  }
+  .jobSal {
+    margin-top: -20px !important;
+  }
+}

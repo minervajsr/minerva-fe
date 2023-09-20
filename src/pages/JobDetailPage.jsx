@@ -124,6 +124,7 @@ const JobDetailPage = () => {
             <h4>{jobData.jobCompany?.companyName}</h4>
           </div>
           <div
+            className={styles.rightDataContainer}
             style={{
               display: "flex",
               justifyContent: "space-between",
@@ -217,7 +218,7 @@ const JobDetailPage = () => {
             <p>Job Type</p>
             <h5>{jobType(jobData.jobType)}</h5>
             <br />
-            <p>Salary</p>
+            <p className={styles.jobSal}>Salary</p>
             <h5>
               ₹ {formatAmount(jobData.jobSalary.min)} - ₹{" "}
               {formatAmount(jobData.jobSalary.max)}

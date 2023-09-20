@@ -254,3 +254,26 @@ select {
   gap: 8px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .profilePageContainer {
+    height: auto !important;
+  }
+  .profileContainer {
+    width: 90%;
+    padding: 16px 12px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+  }
+  .formRow {
+    flex-direction: column;
+    width: 100%;
+  }
+  .formColumn {
+    width: 100%;
+    padding: 5px;
+  }
+  .uploadedFileData {
+    margin-top: 10px;
+  }
+}
