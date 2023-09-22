@@ -1,28 +1,30 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { Routes, Route, Outlet, useNavigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-
-import HomePage from "./pages/HomePage";
-import UserDashboard from "./pages/UserDashboard";
-import SearchPage from "./pages/SearchPage";
-import JobDetailPage from "./pages/JobDetailPage";
-import CompanySignupPage from "./pages/CompanySignupPage";
-import CompanyLoginPage from "./pages/CompanyLoginPage.jsx";
-
 import "./App.css";
-import LogIn from "./pages/Auth/LogIn";
-import SignUp from "./pages/Auth/SignUp";
-import AddSkills from "./pages/Auth/AddSkills";
-import NavBar from "./components/NavBar";
-import CompanyDashboard from "./pages/CompanyDashboard";
-import PostJobPage from "./pages/PostJobPage";
-import MessagePage from "./pages/MessagePage";
-import JobControlPage from "./pages/JobControlPage";
-import ProfilePage from "./pages/ProfilePage";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
-import ForgotPassword from "./pages/Auth/ForgotPassword";
-import PasswordReset from "./pages/Auth/PasswordReset";
+import Spinner from "./components/Spinner";
+import "./App.css";
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const UserDashboard = React.lazy(() => import("./pages/UserDashboard"));
+const SearchPage = React.lazy(() => import("./pages/SearchPage"));
+const JobDetailPage = React.lazy(() => import("./pages/JobDetailPage"));
+const CompanySignupPage = React.lazy(() => import("./pages/CompanySignupPage"));
+const CompanyLoginPage = React.lazy(() =>
+  import("./pages/CompanyLoginPage.jsx")
+);
+const LogIn = React.lazy(() => import("./pages/Auth/LogIn"));
+const SignUp = React.lazy(() => import("./pages/Auth/SignUp"));
+const AddSkills = React.lazy(() => import("./pages/Auth/AddSkills"));
+const NavBar = React.lazy(() => import("./components/NavBar"));
+const CompanyDashboard = React.lazy(() => import("./pages/CompanyDashboard"));
+const PostJobPage = React.lazy(() => import("./pages/PostJobPage"));
+const MessagePage = React.lazy(() => import("./pages/MessagePage"));
+const JobControlPage = React.lazy(() => import("./pages/JobControlPage"));
+const ProfilePage = React.lazy(() => import("./pages/ProfilePage"));
+const ForgotPassword = React.lazy(() => import("./pages/Auth/ForgotPassword"));
+const PasswordReset = React.lazy(() => import("./pages/Auth/PasswordReset"));
 
 function App() {
   const { user } = useAuthContext();
@@ -47,7 +49,7 @@ function App() {
   }, [user, navigate]);
 
   return (
-    <>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route exact path='/linkedin' element={<LinkedInCallback />} />
@@ -99,7 +101,7 @@ function App() {
 
         <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
 
