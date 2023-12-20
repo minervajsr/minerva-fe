@@ -1,0 +1,89 @@
+/* ContactPage.module.css */
+
+.contact-form {
+  max-width: 60vw;
+  margin: 0 auto;
+
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 0px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.contact-form h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-bottom: 10px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form input[type="submit"] {
+  background-color: #0061fe;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.contact-form input[type="submit"]:hover {
+  background-color: #095adb;
+}
+
+.point {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 17px;
+  color: #fff;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 127%; /* 25.4px */
+}
+
+.leftContainer {
+  display: block;
+  width: 50%;
+  height: 100%;
+  color: #fff;
+  background-image: url(../assets/authbg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+.rightContainer {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.rightContainer form div {
+  display: flex;
+  flex-direction: column;
+}

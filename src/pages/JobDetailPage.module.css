@@ -52,7 +52,7 @@
   line-height: 150%; /* 24px */
 }
 .jobDetailRight > h5 {
-  color: #0061fe;
+  color: #0f6af5;
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -96,10 +96,10 @@
 .tag {
   display: inline-block;
   padding: 3px 12px;
-  border: 2px solid #0061fe;
+  border: 2px solid #0f6af5;
   margin: 8px;
   background-color: #eff3ff;
-  color: #0061fe;
+  color: #0f6af5;
   border-radius: 50px;
   font-family: Poppins;
   font-size: 14px;
@@ -108,7 +108,7 @@
   line-height: 28px;
 }
 .applyBtn {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   color: #ffffff;
   border-radius: 8px;
   padding: 8px 34px;
@@ -124,7 +124,7 @@
   gap: 5px;
 }
 .applyBtnDisabled {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   color: #ffffff;
   border-radius: 8px;
   padding: 8px 34px;
@@ -171,7 +171,7 @@
     line-height: 150%; /* 24px */
   }
   .jobDetailRight > h5 {
-    color: #0061fe;
+    color: #0f6af5;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;

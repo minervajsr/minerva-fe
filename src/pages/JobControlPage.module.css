@@ -12,7 +12,7 @@
   gap: 16px;
 }
 .button {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -141,15 +141,15 @@
   gap: 30px !important;
 }
 .candidates h6 {
-  color: #0061fe;
+  color: #0f6af5;
   font-family: Poppins;
   font-size: 14px;
   font-weight: 500;
   padding: 6px 12px;
   cursor: pointer;
-  border: 2px solid #0061fe;
+  border: 2px solid #0f6af5;
   background-color: #eff3ff;
-  color: #0061fe;
+  color: #0f6af5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +157,7 @@
   border-radius: 50px;
 }
 .candidates > div > h5:last-child {
-  color: #0061fe;
+  color: #0f6af5;
 }
 
 .InterestContainer {
@@ -173,7 +173,7 @@
 
 .InterestContainer > button {
   background-color: transparent;
-  color: #1e255e;
+  color: #364152;
   border: 2px solid transparent;
   transition: all 0.2s ease-in-out;
 }
@@ -198,9 +198,9 @@
 .screeningTag {
   display: inline-block;
   padding: 3px 12px;
-  border: 2px solid #0061fe;
+  border: 2px solid #0f6af5;
   background-color: #eff3ff;
-  color: #0061fe;
+  color: #0f6af5;
   border-radius: 50px;
   font-family: Poppins;
   font-size: 14px;
@@ -215,7 +215,7 @@
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  color: #1e255e;
+  color: #364152;
   margin-bottom: 20px;
 }
 .CompanyDashboardTable > h2 span {
@@ -251,15 +251,15 @@
   align-items: center;
   font-family: Poppins;
   font-size: 16px;
-  color: #1e255e;
+  color: #364152;
   font-weight: 500;
   border: 3px solid transparent;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 .active {
-  border-bottom: 3px solid #0061fe;
-  color: #0061fe;
+  border-bottom: 3px solid #0f6af5;
+  color: #0f6af5;
   font-weight: 600;
 }
 

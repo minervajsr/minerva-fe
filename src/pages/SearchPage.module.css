@@ -201,7 +201,7 @@ input[type="range"] {
   left: 7px;
   width: 4px;
   height: 12px;
-  border: solid #0061fe;
+  border: solid #0f6af5;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }

@@ -54,7 +54,7 @@ select {
 }
 
 button {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -127,7 +127,7 @@ button {
   border-radius: 50%;
 }
 .activeStep {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   color: #fff;
   width: 34px;
   height: 34px;
@@ -215,15 +215,15 @@ select {
 }
 .btnOutline {
   background-color: transparent !important;
-  border: 2px solid #0061fe !important;
-  color: #0061fe !important;
+  border: 2px solid #0f6af5 !important;
+  color: #0f6af5 !important;
   font-weight: 500 !important;
 }
 .btnContainer > button {
   margin-top: 10px;
   width: 50%;
   border-radius: 12px;
-  background: #0061fe;
+  background: #0f6af5;
   display: flex;
   padding: 14px 0px;
   justify-content: center;
@@ -240,13 +240,13 @@ select {
   letter-spacing: 0.2px;
 }
 .uploadedFileData {
-  border: 2px solid #0061fe;
+  border: 2px solid #0f6af5;
   border-radius: 8px;
   height: 100%;
   padding: 10px;
   font-size: 14px;
   font-weight: 500;
-  color: #1e255e;
+  color: #364152;
   margin-top: 36px;
   display: flex;
   justify-content: center;

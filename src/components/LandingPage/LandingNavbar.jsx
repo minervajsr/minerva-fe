@@ -2,13 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./LandingNavbar.module.css";
 import logo from "../../assets/logo.svg";
+import Modal from "react-modal";
+
+import UserAuth from "./UserAuth";
 
 const LandingNavbar = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const [authMode, setAuthMode] = useState(1); // 1 for login, 2 for signup
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const menuRef = useRef(null);
-
+  const [showModal, setShowModal] = useState(false);
+  const toggleModal = (val) => {
+    setShowModal(!showModal);
+    setAuthMode(val);
+  };
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
@@ -43,6 +51,31 @@ const LandingNavbar = () => {
       className={`${styles.LandingNavbar} ${
         isMenuOpen ? styles.openMenu : ""
       }`}>
+      <Modal
+        isOpen={showModal}
+        onRequestClose={toggleModal}
+        ariaHideApp={false}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.65)",
+          },
+          content: {
+            width: "60vw",
+            height: "90vh",
+            margin: "auto",
+            borderRadius: "16px",
+            boxShadow: "0px 4px 24px rgba(0, 0, 0, 0.1)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: "9999",
+            padding: "0px",
+            border: "none",
+          },
+        }}>
+        <UserAuth auth_mode={authMode} />
+      </Modal>
+
       <div className={styles.logo}>
         <img src={logo} alt='logo' />
       </div>
@@ -65,18 +98,16 @@ const LandingNavbar = () => {
           <div className={`${styles.buttons} ${styles.mobileButtons}`}>
             <Link
               style={{
-                color: "#0061FE",
+                color: "#0F6AF5",
               }}
               to='/company-login'>
               Post a job
             </Link>
 
-            <button
-              className={styles.signup}
-              onClick={() => navigate("/signup")}>
+            <button className={styles.signup} onClick={() => toggleModal(2)}>
               Sign Up
             </button>
-            <button className={styles.login} onClick={() => navigate("/login")}>
+            <button className={styles.login} onClick={() => toggleModal(1)}>
               Login
             </button>
           </div>
@@ -84,21 +115,21 @@ const LandingNavbar = () => {
       </div>
       {!isMobile && (
         <div className={styles.buttons}>
-          <Link
+          {/* <Link
             style={{
               borderRight: "2px solid rgba(56, 66, 96, 0.6)",
               padding: " 4px 20px",
               marginRight: "10px",
-              color: "#0061FE",
+              color: "#0F6AF5",
             }}
             to='/company-login'>
             Post a job
-          </Link>
+          </Link> */}
 
-          <button className={styles.signup} onClick={() => navigate("/signup")}>
+          <button className={styles.signup} onClick={() => toggleModal(2)}>
             Sign Up
           </button>
-          <button className={styles.login} onClick={() => navigate("/login")}>
+          <button className={styles.login} onClick={() => toggleModal(1)}>
             Login
           </button>
         </div>

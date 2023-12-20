@@ -1,0 +1,91 @@
+.exploreContainer {
+  width: 94%;
+  display: flex;
+  margin: 6%;
+}
+.exploreContainerLeft {
+  width: 40%;
+}
+
+.exploreContainerLeft h1 {
+  line-height: 127%;
+  margin-bottom: 23px;
+  color: #364152;
+  font-family: Poppins;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 127%; /* 71.12px */
+}
+
+.exploreContainerLeft h1 span {
+  color: #0061fe;
+}
+
+.exploreContainerLeft p {
+  color: #364152;
+  width: 75%;
+  line-height: 127%;
+  color: rgba(30, 37, 94, 0.7);
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.btn {
+  border-radius: 5px;
+  border: 1px solid #0061fe;
+  background: #0061fe;
+  color: #fff;
+  padding: 12px 44px;
+}
+
+.exploreContainerRight {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.exploreContainerRightRow {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  width: 80%;
+}
+.exploreContainerRightRowColBox h1 {
+  color: #263238;
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 127%; /* 30.48px */
+}
+
+.exploreContainerRightRowColBox p {
+  color: rgba(56, 66, 96, 0.7);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 127%; /* 22.86px */
+}
+.exploreContainerRightRowCol {
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  gap: 10px;
+  box-shadow: 0px 4px 21.2px 0px rgba(0, 0, 0, 0.053);
+  flex: 1;
+}
+
+.exploreContainerRightRowColIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

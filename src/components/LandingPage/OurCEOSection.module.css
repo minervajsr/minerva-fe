@@ -3,7 +3,7 @@
   border-radius: 30px;
   padding: 94px;
   background: url(../../assets/abstract.svg) left top no-repeat,
-    #0061fe left top no-repeat;
+    #0f6af5 left top no-repeat;
   background-position: 100%;
 }
 .OurCEOSectionContainer > h6 {
@@ -32,7 +32,7 @@
   .OurCEOSectionContainer {
     padding: 34px;
     background: url(../../assets/abstract.svg) left bottom no-repeat,
-      #0061fe no-repeat;
+      #0f6af5 no-repeat;
     background-size: 500px;
   }
   .OurCEOSectionContainer > p {

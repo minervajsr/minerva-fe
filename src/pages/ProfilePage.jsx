@@ -311,7 +311,7 @@ const ProfilePage = () => {
                       onClick={() =>
                         window.open(formData.userResume.secure_url, "_blank")
                       }>
-                      <BiSolidFilePdf size={34} color='#0061fe' />
+                      <BiSolidFilePdf size={34} color='#0F6AF5' />
                       {formData.userResume.fileName} (
                       {bytesToSize(formData.userResume.fileSize)})
                     </p>

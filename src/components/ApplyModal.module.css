@@ -160,13 +160,13 @@ label {
   width: 100%;
 }
 .uploadedFileData {
-  border: 2px solid #0061fe;
+  border: 2px solid #0f6af5;
   border-radius: 8px;
   height: 100%;
   padding: 8px;
   font-size: 14px;
   font-weight: 500;
-  color: #1e255e;
+  color: #364152;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -201,7 +201,7 @@ label {
 .loadingAnimation {
   width: 20px;
   height: 20px;
-  border: 2px solid #0061fe;
+  border: 2px solid #0f6af5;
   border-top: 2px solid transparent;
   border-radius: 50px;
   animation: spin 0.8s linear infinite;
@@ -209,7 +209,7 @@ label {
 
 .uploadProgress {
   height: 2px;
-  background-color: #0061fe;
+  background-color: #0f6af5;
   transition: width 0.3s ease-in-out;
 }
 

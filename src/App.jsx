@@ -6,6 +6,9 @@ import "./App.css";
 import { LinkedInCallback } from "react-linkedin-login-oauth2";
 import Spinner from "./components/Spinner";
 import "./App.css";
+import ContactPage from "./pages/ContactPage.jsx";
+import TermsAndConditions from "./pages/TermsAndConditions.jsx";
+import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const UserDashboard = React.lazy(() => import("./pages/UserDashboard"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage"));
@@ -37,6 +40,11 @@ function App() {
     "/company-login",
     "/company-signup",
     "/skills",
+    "/forgot-password",
+    "/password-reset",
+    "/contact",
+    "/termsandconditions",
+    "/privacypolicy",
     "/",
   ];
 
@@ -55,24 +63,8 @@ function App() {
         <Route exact path='/linkedin' element={<LinkedInCallback />} />
 
         {/* AUTHENTICATION ROUTES */}
-        <Route
-          path='/login'
-          element={
-            <GoogleOAuthProvider clientId='340027487577-8qlcetamo41b34kiesqasu1a4mbajhob.apps.googleusercontent.com'>
-              <LogIn />
-            </GoogleOAuthProvider>
-          }
-        />
-        <Route
-          path='/signup'
-          element={
-            <>
-              <GoogleOAuthProvider clientId='340027487577-8qlcetamo41b34kiesqasu1a4mbajhob.apps.googleusercontent.com'>
-                <SignUp />{" "}
-              </GoogleOAuthProvider>
-            </>
-          }
-        />
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/signup' element={<SignUp />} />
 
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/password-reset/:token' element={<PasswordReset />} />
@@ -80,6 +72,10 @@ function App() {
         <Route path='/skills' element={<AddSkills />} />
         <Route path='/company-login' element={<CompanyLoginPage />} />
         <Route path='/company-signup' element={<CompanySignupPage />} />
+
+        <Route path='/contact' element={<ContactPage />} />
+        <Route path='/termsandconditions' element={<TermsAndConditions />} />
+        <Route path='/privacypolicy' element={<PrivacyPolicy />} />
 
         {/* APPLICATION ROUTES */}
         <Route

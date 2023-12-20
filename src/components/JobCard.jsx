@@ -54,7 +54,8 @@ const JobCard = ({ jobData }) => {
       <h4>{jobData.jobCompany?.companyName}</h4>
       <div className={styles.locationContainer}>
         <div className={styles.location}>
-          <FiMapPin /> <h5>{jobData.jobLocation}</h5>
+          <FiMapPin color='#0F6AF5' />{" "}
+          <h5>{jobData.jobLocation.split(",")[0]}</h5>
         </div>
         <div className={styles.jobType}>
           <h5>{jobType(jobData.jobType)}</h5>

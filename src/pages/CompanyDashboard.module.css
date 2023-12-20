@@ -12,7 +12,7 @@
   gap: 16px;
 }
 .button {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -138,5 +138,5 @@
   gap: 30px !important;
 }
 .candidates > div > h5:last-child {
-  color: #0061fe;
+  color: #0f6af5;
 }

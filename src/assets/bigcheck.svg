@@ -3,7 +3,7 @@
   <rect opacity="0.5" x="128.443" y="33.5342" width="29.3594" height="29.3594" rx="10" fill="#99C0FF"/>
   <rect opacity="0.5" x="0.443359" y="75.5342" width="31.5329" height="31.5329" rx="8" fill="#CCDFFF"/>
   <rect opacity="0.5" x="114.73" y="107.485" width="36.5935" height="36.5935" rx="8" fill="#E6EFFF"/>
-  <circle cx="83.9199" cy="79.0396" r="60" fill="#0061FE"/>
+  <circle cx="83.9199" cy="79.0396" r="60" fill="#0F6AF5"/>
   <g filter="url(#filter0_d_49_1603)">
     <path d="M61.2031 82.2843L74.1836 95.2648L106.635 62.8135" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
   </g>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -64,6 +64,11 @@
   --toastify-color-progress-error: var(--toastify-color-error);
 }
 
+.ReactModalPortal {
+  position: absolute;
+  z-index: 9999;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -88,12 +93,12 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #0061fe;
+  border-color: #0f6af5;
 }
 /* Checkbox element, when checked */
 input[type="checkbox"]:checked {
   background-color: #aa7e16;
-  border-color: #0061fe;
+  border-color: #0f6af5;
 }
 
 input[type="file"] {
@@ -105,7 +110,7 @@ input[type="file"] {
 
 /* Style for the file input button */
 input[type="file"]::-webkit-file-upload-button {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   font-family: Poppins;
   font-size: 14px;
   color: #fff;
@@ -154,12 +159,12 @@ textarea {
 /* Customize the slider */
 .rc-slider {
   .rc-slider-track {
-    background-color: #0061fe; /* Change track color */
+    background-color: #0f6af5; /* Change track color */
   }
 
   .rc-slider-handle {
     border-color: #fff; /* Change handle border color */
-    background-color: #0061fe; /* Change handle color */
+    background-color: #0f6af5; /* Change handle color */
     border-width: 5px;
     opacity: 1;
     width: 24px; /* Increase the width of the handle */
@@ -168,8 +173,8 @@ textarea {
   }
 
   .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
-    border-color: #0061fe; /* Change handle border color while dragging */
-    box-shadow: 0px 0px 5px #0061fe; /* Add a shadow to the handle while dragging */
+    border-color: #0f6af5; /* Change handle border color while dragging */
+    box-shadow: 0px 0px 5px #0f6af5; /* Add a shadow to the handle while dragging */
   }
 }
 .customToast {
@@ -199,7 +204,7 @@ textarea {
 /* Firefox */
 * {
   scrollbar-width: auto;
-  scrollbar-color: #0061fe #ffffff;
+  scrollbar-color: #0f6af5 #ffffff;
 }
 
 /* Chrome, Edge, and Safari */
@@ -212,7 +217,7 @@ textarea {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #0061fe;
+  background-color: #0f6af5;
   border-radius: 92px;
   border: 2px solid #ffffff;
 }

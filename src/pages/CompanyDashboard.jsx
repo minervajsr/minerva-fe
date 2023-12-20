@@ -192,7 +192,7 @@ const CompanyDashboard = () => {
           style={{
             fontSize: "22px",
             fontWeight: 600,
-            color: "#1E255E",
+            color: "#364152",
           }}>
           {" "}
           No Job Post Found In this Account!{" "}

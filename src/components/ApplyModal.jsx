@@ -121,7 +121,7 @@ const ApplyModal = ({ jobTitle, screeningQuestions, onClose, onSubmit }) => {
                           padding: "5px",
                           width: "100%",
                           height: "100%",
-                          border: "2px solid #0061fe",
+                          border: "2px solid #0F6AF5",
                           borderRadius: "4px",
                         }}>
                         <div
@@ -153,7 +153,7 @@ const ApplyModal = ({ jobTitle, screeningQuestions, onClose, onSubmit }) => {
                         onClick={() =>
                           window.open(userResume.secure_url, "_blank")
                         }>
-                        <BiSolidFilePdf size={34} color='#0061fe' />
+                        <BiSolidFilePdf size={34} color='#0F6AF5' />
 
                         {`${userResume.fileName}` +
                           `(${bytesToSize(userResume.fileSize)})`}
@@ -171,7 +171,7 @@ const ApplyModal = ({ jobTitle, screeningQuestions, onClose, onSubmit }) => {
                           padding: "5px",
                           width: "100%",
                           height: "100%",
-                          border: "2px solid #0061fe",
+                          border: "2px solid #0F6AF5",
                           borderRadius: "4px",
                         }}>
                         <div

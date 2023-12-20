@@ -166,7 +166,7 @@ const JobControlPage = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              color: "#1E255E",
+              color: "#364152",
               fontFamily: "Poppins",
               fontSize: "18px",
             }}>
