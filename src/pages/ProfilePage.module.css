@@ -7,9 +7,39 @@
   align-items: center;
   background-color: #f8f8f8;
 }
+.profileSidebar {
+  width: 20%;
+  margin-right: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profileSidebarMenu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profileSidebarMenu li {
+  padding: 10px 20px;
+  color: #000;
+  cursor: pointer;
+}
+
+.profileSidebarMenu li:hover {
+  color: #09090a !important;
+}
+
+.current {
+  color: #09090a !important;
+  border-radius: 8px;
+  background-color: rgba(219, 218, 227, 0.3);
+}
+
 .profileContainer {
   width: 45%;
-  margin: 0 auto;
   padding: 22px 30px;
   background-color: #fff;
   border-radius: 12px;
@@ -277,3 +307,62 @@ select {
     margin-top: 10px;
   }
 }
+
+.ApplicationDashboardTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.TableHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.TableHeader > div {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.TableBody {
+  background-color: #fff;
+  width: 100%;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+  font-size: 14px;
+  text-align: left;
+}
+
+.ApplicationDashboardCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #615e83;
+}
+.TableHeader > div:nth-child(1),
+.ApplicationDashboardCard > div:nth-child(1),
+.TableHeader > div:nth-child(2),
+.ApplicationDashboardCard > div:nth-child(2) {
+  flex: 30%;
+  margin: 0px 10px;
+  text-align: left;
+}
+
+.TableHeader > div:nth-child(3),
+.ApplicationDashboardCard > div:nth-child(3),
+.TableHeader > div:nth-child(4),
+.ApplicationDashboardCard > div:nth-child(4) {
+  flex: 20%;
+  text-align: left;
+  margin: 0px 10px;
+}
+/* .ApplicationDashboardPaging {
+  margin-top: 20px;
+} */

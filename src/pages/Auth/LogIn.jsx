@@ -104,10 +104,12 @@ const LogIn = () => {
 
         setTimeout(() => {
           dispatch({ type: "LOGIN", payload: response.data.user });
-          localStorage.setItem(
-            "minervauser",
-            JSON.stringify(response.data.user)
-          );
+          const userData = {
+            user: response.data.user,
+            token: response.data.token,
+          };
+          console.log("userData", userData);
+          localStorage.setItem("minervauser", JSON.stringify(userData));
           navigate("/dashboard");
         }, 1200);
       })

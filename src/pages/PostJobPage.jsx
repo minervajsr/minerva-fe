@@ -210,7 +210,7 @@ const PostJobPage = ({ totalSteps = 6 }) => {
                 </select>
               </div>
               <div className={styles.formColumn}>
-                <label htmlFor='jobDeadline'>Job Application Date</label>
+                <label htmlFor='jobDeadline'>Job Deadline Date</label>
                 <input
                   type='date'
                   id='jobDeadline'

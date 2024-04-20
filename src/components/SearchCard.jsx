@@ -32,11 +32,19 @@ const JobCard = ({ jobData }) => {
       </div>
       <h6>{jobData.jobCategory}</h6>
       <h2>{jobData.jobTitle}</h2>
-      <div className={styles.gridlayout}>
+      <div
+        className={styles.gridlayout}
+        style={{
+          margin: "10px 0",
+        }}>
         <div className={styles.gridItem}>
           <h4>{jobData.jobCompany?.companyName}</h4>
         </div>
-        <div className={styles.gridItem}>
+        <div
+          className={styles.gridItem}
+          style={{
+            width: "100%",
+          }}>
           <h5
             style={{
               fontWeight: 500,

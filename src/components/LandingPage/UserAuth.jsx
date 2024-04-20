@@ -90,7 +90,7 @@ const UserAuth = ({ auth_mode }) => {
 
       if (response.data.user.userSkills.length === 0) {
         console.log("No Skills");
-        navigate("/skills");
+        setSignUpSteps(3);
       } else {
         navigate("/dashboard");
       }
@@ -234,6 +234,7 @@ const UserAuth = ({ auth_mode }) => {
             "minervauser",
             JSON.stringify(response.data.user)
           );
+
           navigate("/dashboard");
         }, 1200);
       })
@@ -332,13 +333,15 @@ const UserAuth = ({ auth_mode }) => {
             </p>
             <div className={styles.socialContainer}>
               {/* Google Sign In */}
-              <button className={styles.googleBtn}>
+              <button
+                className={styles.googleBtn}
+                onClick={() => googlelogin()}>
                 <FcGoogle size={28} />
                 Sign in with Google
               </button>
 
               {/* LinkedIn Sign In */}
-              <button className={styles.linkedinBtn}>
+              <button className={styles.linkedinBtn} onClick={linkedInLogin}>
                 <FaLinkedin size={28} color='#0A66C2' />
                 Sign in with LinkedIn
               </button>

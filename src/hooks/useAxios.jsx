@@ -7,7 +7,20 @@ axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
 axios.defaults.withCredentials = true;
 // console.log("BASE URL", import.meta.env.VITE_API_URL);
 
-const useAxios = ({ url, method, body = null, headers = null },reload=null) => {
+//Get token from local storage
+
+const user = JSON.parse(localStorage.getItem("minervauser"));
+
+//Set token to header
+
+console.log("User", user, user?.token);
+
+axios.defaults.headers.common["Authorization"] = `Bearer ${user?.token || ""}`;
+
+const useAxios = (
+  { url, method, body = null, headers = null },
+  reload = null
+) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setloading] = useState(true);
@@ -34,7 +47,7 @@ const useAxios = ({ url, method, body = null, headers = null },reload=null) => {
 
   useEffect(() => {
     fetchData();
-  }, [method, url, body, headers,reload]);
+  }, [method, url, body, headers, reload]);
 
   return { response, error, loading };
 };

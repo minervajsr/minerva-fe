@@ -5,14 +5,13 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import JobCard from "../components/JobCard";
 import ApplyModal from "../components/ApplyModal";
+import { PiMapPinBold } from "react-icons/pi";
+import { IoMdMail } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BsBookmarkCheck,
-  BsChatLeftText,
-  BsBookmarkCheckFill,
-  BsArrowRight,
-} from "react-icons/bs";
+
+import { FiCalendar } from "react-icons/fi";
+
 const jobType = (jobType) => {
   if (jobType === "FULL_TIME") {
     return "Full Time";
@@ -24,14 +23,14 @@ const jobType = (jobType) => {
     return "Freelance";
   }
 };
-import { HiArrowNarrowRight } from "react-icons/hi";
 const JobDetailPage = () => {
   const navigate = useNavigate();
+  const [refresh, setRefresh] = useState(false);
   const { jobId } = useParams();
   const { response, loading, error } = useAxios({
     method: "get",
     url: `api/v1/job/${jobId}`,
-    headers: JSON.stringify({ accept: "*/*" }),
+    reload: refresh,
   });
   const [showApplyModal, setShowApplyModal] = useState(false);
 
@@ -43,34 +42,16 @@ const JobDetailPage = () => {
     setShowApplyModal(false);
   };
 
-  const handleSubmitApplication = (applicationData) => {
-    // Handle the submission of the application data here
-    console.log("Application Data:", applicationData);
-    applyForJob(applicationData);
-    // Close the modal after submission
-  };
+  // const handleSubmitApplication = (applicationData) => {
+  //   // Handle the submission of the application data here
+  //   console.log("Application Data:", applicationData);
+  //   applyForJob(applicationData);
+  //   // Close the modal after submission
+  // };
 
   if (loading) {
     return <h1>Loading...</h1>;
   }
-
-  const applyForJob = async (applicationData) => {
-    const url = `${import.meta.env.VITE_API_URL}/api/v1/apply/${jobId}`;
-    await axios
-      .post(url, {
-        applicationData,
-      })
-      .then(function (response) {
-        console.log("res", response.data);
-        setShowApplyModal(false);
-        toast.success("🎉 Application Submitted!");
-      })
-      .catch(function (error) {
-        console.log(error);
-        setShowApplyModal(false);
-        toast.error(error.response.data.message);
-      });
-  };
 
   function formatAmount(amount) {
     if (amount >= 1000) {
@@ -101,160 +82,331 @@ const JobDetailPage = () => {
         closeButton={false}
       />
 
-      <div className={styles.jobDetailLeft}>
-        <h2>More Like This</h2>
-        <div className={styles.jobSuggestionsContainer}>
-          {response?.recommendedJobs &&
-            response?.recommendedJobs.map((job) => (
-              <div key={job._id}>
-                <JobCard jobData={job} />
-              </div>
-            ))}
-        </div>
-      </div>
-      <div className={styles.jobDetailRight}>
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-          }}>
-          <div>
-            <h2>{jobData.jobTitle}</h2>
-            <h4>{jobData.jobCompany?.companyName}</h4>
+      <div className={styles.jobDetail}>
+        <div className={styles.jobDetailHeader}>
+          <div className={styles.jobDetailHeaderLeft}>
+            <div className={styles.jobDetailHeaderLeftTitle}>
+              {jobData.jobTitle}
+            </div>
+            <div className={styles.jobDetailHeaderLeftSubTitle}>
+              {jobData.jobCompany.companyName}
+            </div>
+            <div className={styles.jobDetailHeaderLeftSubTitle}>
+              {jobData.jobLocation}
+            </div>
           </div>
-          <div
-            className={styles.rightDataContainer}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "30%",
-              alignItems: "center",
-              flexDirection: "column",
-            }}>
-            <p
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "6px 10px",
-                fontFamily: "Poppins",
-                fontSize: "14px",
-                borderRadius: "5px",
-                fontWeight: "500",
-                backgroundColor: "#F2F2F2",
-                marginBottom: "10px",
-                border: "1px solid #E0E0E0",
-                color: "#384260",
-              }}>
-              Application ends on {formatDate(jobData?.jobDeadline)}
-            </p>
+
+          <div className={styles.jobDetailHeaderRight}>
+            <div className={styles.deadlineTag}>
+              <FiCalendar color='#384260' size={24} />
+
+              {formatDate(jobData.jobDeadline)}
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+      <div className={styles.jobDetailBody}>
+        <div className={styles.jobDetailBodyLeft}>
+          <div className={styles.jobDetailBodyItem}>
+            <div className={styles.jobDetailBodyItemTitle}>Overview</div>
+            <div className={styles.jobDetailBodyItemValue}>
+              {jobData.jobDescription}
+            </div>
+          </div>
+          <br />
+          <div className={styles.jobDetailBodyItem}>
+            <div className={styles.jobDetailBodyItemTitle}>
+              Responsibilities
+            </div>
+            <div className={styles.jobDetailBodyItemValue}>
+              {
+                <ul>
+                  {jobData.keyResponsibilities.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              }
+            </div>
+          </div>
+
+          <div className={styles.jobDetailBodyItem}>
+            <div className={styles.jobDetailBodyItemTitle}>Benifits</div>
+            <div className={styles.jobDetailBodyItemValue}>
+              {
+                <ul>
+                  {jobData.jobBenefits.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              }
+            </div>
+          </div>
+
+          <div className={styles.jobDetailBodyItem}>
+            <div className={styles.jobDetailBodyItemTitle}>Skills</div>
+            <div className={styles.jobDetailBodyItemValue}>
+              {jobData.jobSkills.map((item) => (
+                <div
+                  style={{
+                    display: "inline-block",
+                    padding: "12px 24px",
+                    margin: "5px",
+                    fontSize: "12px",
+                    fontWeight: "600",
+                    color: "rgba(56, 66, 96, 0.7)",
+                    borderRadius: "50px",
+                    backgroundColor: "#f2f2f2",
+                    textTransform: "capitalize",
+                  }}>
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className={styles.jobDetailBodyRight}>
+          <div className={styles.jobDetailBodyRightItem}>
             <div
               style={{
                 display: "flex",
-                justifyContent: "flex-end",
-                gap: "30px",
                 alignItems: "center",
-                width: "100%",
+                gap: "10px",
+                fontWeight: "600",
+                color: "#383E60",
+                fontSize: "18px",
+              }}>
+              <PiMapPinBold size={24} /> {jobData.jobLocation.split(",")[0]}
+            </div>
+            <p
+              style={{
+                fontSize: "14px",
+                color: "#8083A3",
+                marginTop: "10px",
+              }}>
+              Please send us your detailed CV to apply for this job post
+            </p>
+            <br />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                fontWeight: "600",
+                color: "#383E60",
+                fontSize: "18px",
+              }}>
+              {/* Salary */}
+              {
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    fontWeight: "800",
+                    color: "#383E60",
+                    fontSize: "24px",
+                  }}>
+                  ₹{formatAmount(jobData.jobSalary.min)} - ₹
+                  {formatAmount(jobData.jobSalary.max)}
+                </div>
+              }
+            </div>
+            <p
+              style={{
+                marginTop: "-5px",
+              }}>
+              Avg. salary
+            </p>
+
+            <div
+              style={{
+                display: "flex",
+                marginTop: "20px",
+                alignItems: "center",
+                gap: "20px",
               }}>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  fontSize: "12px",
-                  gap: "10px",
-                  cursor: "pointer",
+                  padding: "15px",
+                  backgroundColor: "#F5F5FA",
+                  borderRadius: "50px",
+                  color: "#1E255E !important",
                 }}>
-                <BsChatLeftText
-                  title='Message Recruiter'
-                  size={24}
-                  color='#38486e'
-                  onClick={() => {
-                    navigate(`/message`, {
-                      state: {
-                        receiverId: `${jobData.jobPostedBy}`,
-                        receiverName: `${jobData.jobCompany.companyName}`,
-                      },
-                    });
-                  }}
-                />
+                <IoMdMail size={20} color='#1E255E' />
               </div>
-
-              <button
-                className={`${styles.applyBtn} ${
-                  jobData.isAlreadyApplied ? styles.applyBtnDisabled : ""
-                }`}
-                disabled={jobData.isAlreadyApplied}
-                onClick={handleApplyClick}>
-                {jobData.isAlreadyApplied ? "Applied" : "Apply Now"}{" "}
-                <HiArrowNarrowRight size={18} />
-              </button>
-              {showApplyModal && (
-                <ApplyModal
-                  jobTitle={jobData.jobTitle}
-                  screeningQuestions={jobData.jobScreeningQuestions.map(
-                    (questionObj) => questionObj.question
-                  )}
-                  onClose={handleCloseModal}
-                  onSubmit={handleSubmitApplication}
-                />
-              )}
+              <div>
+                <h4
+                  style={{
+                    fontSize: "18px",
+                    color: "#1E255E",
+                    fontWeight: "600",
+                  }}>
+                  {jobData.jobCompany.companyEmail}
+                </h4>
+                <p
+                  style={{
+                    color: "#8083A3",
+                    fontSize: "14px",
+                    marginTop: "2px",
+                  }}>
+                  Contact Email
+                </p>
+              </div>
             </div>
+
+            <div
+              style={{
+                display: "flex",
+                marginTop: "20px",
+                alignItems: "center",
+                gap: "20px",
+              }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "15px",
+                  backgroundColor: "#F5F5FA",
+                  borderRadius: "50px",
+                  color: "#1E255E !important",
+                }}>
+                <IoMdMail size={20} color='#1E255E' />
+              </div>
+              <div>
+                <h4
+                  style={{
+                    fontSize: "18px",
+                    color: "#1E255E",
+                    fontWeight: "600",
+                  }}>
+                  {jobType(jobData.jobType)}
+                </h4>
+                <p
+                  style={{
+                    color: "#8083A3",
+                    fontSize: "14px",
+                    marginTop: "2px",
+                  }}>
+                  Job Type
+                </p>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                marginTop: "20px",
+                alignItems: "center",
+                gap: "20px",
+              }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "15px",
+                  backgroundColor: "#F5F5FA",
+                  borderRadius: "50px",
+                  color: "#1E255E !important",
+                }}>
+                <IoMdMail size={20} color='#1E255E' />
+              </div>
+              <div>
+                <h4
+                  style={{
+                    fontSize: "18px",
+                    color: "#1E255E",
+                    fontWeight: "600",
+                  }}>
+                  {jobData.jobCategory}
+                </h4>
+                <p
+                  style={{
+                    color: "#8083A3",
+                    marginTop: "2px",
+                    fontSize: "14px",
+                  }}>
+                  Job Category
+                </p>
+              </div>
+            </div>
+
+            <button
+              className={`${styles.applyBtn} ${
+                jobData.isAlreadyApplied ? styles.applyBtnDisabled : ""
+              }`}
+              disabled={jobData.isAlreadyApplied}
+              onClick={handleApplyClick}>
+              {jobData.isAlreadyApplied ? "Applied" : "Apply for this job"}
+              {/* <HiArrowNarrowRight size={18} /> */}
+            </button>
+            {showApplyModal && (
+              <ApplyModal
+                jobId={jobId}
+                jobTitle={jobData.jobTitle}
+                screeningQuestions={jobData.jobScreeningQuestions.map(
+                  (questionObj) => questionObj.question
+                )}
+                onClose={handleCloseModal}
+                onSubmit={() => setRefresh(!refresh)}
+              />
+            )}
           </div>
-        </div>
+          <br />
+          <br />
 
-        <h5>{jobData.jobLocation}</h5>
+          <div className={styles.jobDetailBodyRightItem}>
+            <div>
+              <h4
+                style={{
+                  fontSize: "24px",
+                  color: "#1E255E",
+                  fontWeight: "600",
+                }}>
+                {jobData.jobCompany.companyName}
+              </h4>
+              <p
+                style={{
+                  color: "#8083A3",
+                  fontSize: "14px",
+                  marginTop: "2px",
+                }}>
+                We are committed to creating an inclusive for all employees.
+              </p>
+            </div>
 
-        <h3>Job Overview</h3>
-        <div
-          className={styles.jobOverview}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}>
-          <p>{jobData.jobDescription}</p>
-          <div className={styles.jobSalary}>
-            <p>Job Type</p>
-            <h5>{jobType(jobData.jobType)}</h5>
-            <br />
-            <p className={styles.jobSal}>Salary</p>
-            <h5>
-              ₹ {formatAmount(jobData.jobSalary.min)} - ₹{" "}
-              {formatAmount(jobData.jobSalary.max)}
-            </h5>
+            <button
+              style={{
+                width: "100%",
+                padding: "22px",
+                borderRadius: "12px",
+                backgroundColor: "#F5F5FA",
+                color: "#212121",
+                border: "none",
+                marginTop: "20px",
+                cursor: "pointer",
+                fontSize: "16px",
+                fontWeight: "600",
+              }}
+              onClick={() => {
+                // Log the companyWebsite value
+                console.log(jobData.jobCompany.companyWebsite);
+
+                // Check if the URL starts with http:// or https://
+                let url = jobData.jobCompany.companyWebsite;
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                  // Add http:// if it's missing
+                  url = "http://" + url;
+                }
+
+                // Open webpage in new tab
+                window.open(url, "_blank");
+              }}>
+              Learn more about us
+            </button>
           </div>
-        </div>
-        <h3>Job Skills</h3>
-        <div>
-          {jobData.jobSkills.map((skill) => (
-            <span key={skill} className={styles.tag}>
-              {skill}
-            </span>
-          ))}
-        </div>
-
-        <h3>Key Responsibilities</h3>
-        <div>
-          {jobData.keyResponsibilities.map((benefit) => (
-            <span key={benefit} className={styles.tag}>
-              {benefit}
-            </span>
-          ))}
-        </div>
-
-        {/* <h3>Job Type</h3>
-        <p>{jobType(jobData.jobType)}</p> */}
-        <h3>Total number of vacancies</h3>
-        <p>{jobData.jobVacancies}</p>
-
-        <h3>Job Benefits</h3>
-        <div>
-          {jobData.jobBenefits.map((benefit) => (
-            <span key={benefit} className={styles.tag}>
-              {benefit}
-            </span>
-          ))}
         </div>
       </div>
     </div>

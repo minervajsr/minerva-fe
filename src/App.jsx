@@ -9,6 +9,7 @@ import "./App.css";
 import ContactPage from "./pages/ContactPage.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import PaymentPage from "./pages/PaymentPage.jsx";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const UserDashboard = React.lazy(() => import("./pages/UserDashboard"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage"));
@@ -48,12 +49,37 @@ function App() {
     "/",
   ];
 
+  const checkTokenValidity = async () => {
+    try {
+      if (user) {
+        const url = `${import.meta.env.VITE_API_URL}/api/v1/user/check-token`;
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        if (response.status !== 200) {
+          navigate("/");
+        }
+        if (response.status === 200 && window.location.pathname === "/") {
+          navigate("/dashboard");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      navigate("/");
+    }
+  };
+
   useEffect(() => {
     console.log("User", user);
     console.log("Path", window.location.pathname);
     if (!user && !routesWithoutAuth.includes(window.location.pathname)) {
       navigate("/");
     }
+
+    checkTokenValidity();
   }, [user, navigate]);
 
   return (
@@ -85,6 +111,8 @@ function App() {
               <Outlet />
             </>
           }>
+          <Route path='/payment/:orderId' element={<PaymentPage />} />
+
           <Route path='/profile' index element={<ProfilePage />} />
           <Route path='/dashboard' index element={<UserDashboard />} />
           <Route path='/search' element={<SearchPage />} />

@@ -7,11 +7,188 @@ import skillOptions from "../constants/skillOptions.js";
 import countryList from "../constants/countryList.js";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { BiSolidFilePdf } from "react-icons/bi";
+import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const formatDate = (dateString) => {
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
+const formatStatus = (status) => {
+  switch (status) {
+    case "SHORTLISTED":
+      return (
+        <span
+          style={{
+            color: "#F17400",
+            backgroundColor: "#FFF5CA",
+            padding: "5px 20px",
+            borderRadius: "50px",
+            fontWeight: "600",
+            fontSize: "13px",
+          }}>
+          Shortlisted
+        </span>
+      );
+    case "REJECTED":
+      return (
+        <span
+          style={{
+            color: "#D91A1A",
+            backgroundColor: "#FFF3F2",
+            padding: "5px 20px",
+            borderRadius: "50px",
+            fontWeight: "600",
+            fontSize: "13px",
+          }}>
+          Rejected
+        </span>
+      );
+
+    case "HIRED":
+      return (
+        <span
+          style={{
+            color: "#00974F",
+            backgroundColor: "#D2FDE6",
+            padding: "5px 20px",
+            borderRadius: "50px",
+            fontWeight: "600",
+            fontSize: "13px",
+          }}>
+          Shortlisted
+        </span>
+      );
+    default:
+      return (
+        <span
+          style={{
+            color: "#004FCF",
+            backgroundColor: "#DDEBFF",
+            padding: "5px 20px",
+            borderRadius: "50px",
+            fontWeight: "600",
+            fontSize: "13px",
+          }}>
+          Applied
+        </span>
+      );
+  }
+};
+
+const avatarColors = [
+  "#F06292",
+  "#BA68C8",
+  "#64B5F6",
+  "#81C784",
+  "#FFD54F",
+  "#FF8A65",
+];
+
+const Avatar = ({ fullName }) => {
+  const getInitials = (name) => {
+    const names = name.split(" ");
+    return names
+      .map((n) => n[0])
+      .slice(0, 2) // You can modify this to display more initials if needed
+      .join("")
+      .toUpperCase();
+  };
+
+  const getAvatarColor = (name) => {
+    const nameHashCode = name
+      .split("")
+      .reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return avatarColors[nameHashCode % avatarColors.length];
+  };
+
+  const initials = getInitials(fullName);
+  const avatarColor = getAvatarColor(fullName);
+
+  return (
+    <div
+      style={{
+        width: "50px",
+        height: "50px",
+        borderRadius: "50%",
+        backgroundColor: avatarColor,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#fff",
+        fontSize: "20px",
+      }}>
+      {initials}
+    </div>
+  );
+};
+
+const ApplicationDashboardCard = ({ applicationData }) => {
+  return (
+    <div className={styles.ApplicationDashboardCard}>
+      <div>
+        <span>{applicationData.jobTitle}</span>
+      </div>
+      <div>
+        <span>{applicationData.jobCompany.companyName}</span>
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+        }}>
+        <span>{formatDate(applicationData.jobAppliedOn)}</span>{" "}
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+        }}>
+        {formatStatus(applicationData.jobApplicationStatus)}
+      </div>
+    </div>
+  );
+};
+
+const PaymentDashboardCard = ({ paymentData }) => {
+  return (
+    <div className={styles.ApplicationDashboardCard}>
+      <div>
+        <span>
+          {paymentData._id.slice(0, 6) + "..." + paymentData._id.slice(-4)}
+        </span>{" "}
+      </div>
+      <div>
+        <span>
+          {paymentData.paymentType === "SUBSCRIPTION_MONTHLY"
+            ? "Pro Subscription"
+            : "Purchase"}
+        </span>
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+        }}>
+        <span>{new Date(paymentData.paymentDate).toLocaleDateString()}</span>{" "}
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+        }}>
+        <span>{paymentData.paymentStatus}</span>
+      </div>
+    </div>
+  );
+};
+
 const ProfilePage = () => {
   const { user, dispatch } = useAuthContext();
+  const [activeItem, setActiveItem] = useState("Profile");
+  const [applicationList, setApplicationList] = useState([]);
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: "",
+    newPassword: "",
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,6 +205,22 @@ const ProfilePage = () => {
       fileSize: 0,
     },
   });
+
+  const updatePassword = async () => {
+    const url = `${import.meta.env.VITE_API_URL}/api/v1/user/password-update`;
+    try {
+      const response = await axios.post(url, {
+        currentPassword: passwordForm.currentPassword,
+        newPassword: passwordForm.newPassword,
+        userId: user._id,
+      });
+      console.log(response);
+      toast.success("Password Updated!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!");
+    }
+  };
 
   const { response, loading, error } = useAxios({
     method: "get",
@@ -100,6 +293,8 @@ const ProfilePage = () => {
             fileSize: response?.data?.userResume?.fileSize || 0,
           },
         });
+
+        setApplicationList(response.data.jobApplications);
       }
 
       if (user.userType === "COMPANY") {
@@ -191,160 +386,387 @@ const ProfilePage = () => {
           autoClose={2000}
           closeButton={false}
         />
+        <div className={styles.profileSidebar}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "16px",
+            }}>
+            <div>
+              <Avatar fullName={user?.name ? user.name : "Anonymous"} />
+            </div>
+            <div>
+              <h3
+                style={{
+                  color: "#38486E",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}>
+                {user?.name ? user.name : "Anonymous"}
+              </h3>
+              <p
+                style={{
+                  color: "#6F6C90",
+                  fontSize: "13px",
+                }}>
+                {user?.email ? user.email : "Anonymous"}
+              </p>
+            </div>
+          </div>
+          <br />
+          <div>
+            {/* <p
+              style={{
+                color: "#6F6C90",
+                fontSize: "13px",
+              }}>
+              {user?.isPremiumActivated ? "Premium User" : "Free User"}
+            </p>
+            <p
+              style={{
+                color: "#6F6C90",
+                fontSize: "13px",
+              }}>
+              {user?.premiumExpiry
+                ? `Premium Expiry: ${formatDate(new Date(user.premiumExpiry))}`
+                : ""}
+            </p> */}
+          </div>
+
+          <div className={styles.profileSidebarMenu}>
+            <ul>
+              <li
+                className={activeItem === "Profile" ? styles.current : ""}
+                onClick={() => setActiveItem("Profile")}>
+                Profile
+              </li>
+              <li
+                className={
+                  activeItem === "My Applications" ? styles.current : ""
+                }
+                onClick={() => setActiveItem("My Applications")}>
+                My Applications
+              </li>
+              <li
+                className={activeItem === "Security" ? styles.current : ""}
+                onClick={() => setActiveItem("Security")}>
+                Security
+              </li>
+              <li
+                className={activeItem === "Order History" ? styles.current : ""}
+                onClick={() => setActiveItem("Order History")}>
+                Order History
+              </li>
+            </ul>
+            <div
+              style={{
+                marginTop: "253px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              }}>
+              {/* <button onClick={checkoutPayment}>Pay Premium</button> */}
+
+              <button onClick={handleLogOut}>Log Out</button>
+            </div>
+          </div>
+        </div>
 
         <div className={styles.profileContainer}>
-          <h2>Edit Profile</h2>
-          <form onSubmit={handleUpdateProfile}>
-            <div className={styles.formGroup}>
-              <div className={styles.formRow}>
-                <div className={styles.formColumn}>
-                  <label htmlFor='name'>Name</label>
-                  <input
-                    type='text'
-                    id='name'
-                    placeholder='Your Name'
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
+          {activeItem === "Profile" && (
+            <>
+              <h2>Edit Profile</h2>
+              <form onSubmit={handleUpdateProfile}>
+                <div className={styles.formGroup}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formColumn}>
+                      <label htmlFor='name'>Name</label>
+                      <input
+                        type='text'
+                        id='name'
+                        placeholder='Your Name'
+                        value={formData.name}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div className={styles.formColumn}>
+                      <label htmlFor='companyEmail'>Email</label>
+                      <input
+                        disabled
+                        style={{
+                          cursor: "not-allowed",
+                        }}
+                        type='email'
+                        id='companyEmail'
+                        placeholder='Your Email'
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.formColumn}>
-                  <label htmlFor='companyEmail'>Email</label>
-                  <input
-                    disabled
+                <div className={styles.formGroup}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formColumn}>
+                      <label htmlFor='countryCode'>Country Code</label>
+                      <select
+                        id='countryCode'
+                        value={formData.mobile.countryCode}
+                        onChange={(e) => {
+                          setFormData({
+                            ...formData,
+                            mobile: {
+                              ...formData.mobile,
+                              countryCode: e.target.value,
+                            },
+                          });
+                        }}>
+                        <option value='' disabled>
+                          Select Country Code
+                        </option>
+                        {countryList.map((country) => (
+                          <option key={country.code} value={country.dial_code}>
+                            {`${country.name} (${country.dial_code})`}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className={styles.formColumn}>
+                      <label htmlFor='phone'>Phone Number</label>
+                      <input
+                        type='text'
+                        id='phone'
+                        placeholder='Phone Number'
+                        value={formData.mobile.phone}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            mobile: {
+                              ...formData.mobile,
+                              phone: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.formGroup}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formColumn}>
+                      <label htmlFor='userSkills'>Skills</label>
+                      <Select
+                        id='userSkills'
+                        isMulti
+                        options={skillOptions}
+                        value={formData.userSkills.map((skill) => ({
+                          value: skill,
+                          label: skill,
+                        }))}
+                        onChange={(values) =>
+                          setFormData({
+                            ...formData,
+                            userSkills: values.map((value) => value.value),
+                          })
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formColumn}>
+                      <label htmlFor='resume'>Resume</label>
+                      <input
+                        type='file'
+                        id='resume'
+                        name='resume'
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                    <div className={styles.formColumn}>
+                      {formData.userResume && (
+                        <p
+                          className={styles.uploadedFileData}
+                          onClick={() =>
+                            window.open(
+                              formData.userResume.secure_url,
+                              "_blank"
+                            )
+                          }>
+                          <BiSolidFilePdf size={34} color='#0F6AF5' />
+                          {formData.userResume.fileName} (
+                          {bytesToSize(formData.userResume.fileSize)})
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <br />
+                <div className={styles.formGroup}>
+                  <div className={styles.formRow}>
+                    <div className={styles.formColumn}>
+                      <button type='submit'>Update Profile</button>
+                      {/* <br />
+                  <button onClick={checkoutPayment}>Pay Premium</button> */}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className={styles.formColumn}
+                  style={{
+                    marginTop: "10px",
+                  }}>
+                  <button
                     style={{
-                      cursor: "not-allowed",
+                      backgroundColor: "#F2F2F2 ",
+                      color: "#38486E",
                     }}
-                    type='email'
-                    id='companyEmail'
-                    placeholder='Your Email'
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-            <div className={styles.formGroup}>
-              <div className={styles.formRow}>
-                <div className={styles.formColumn}>
-                  <label htmlFor='countryCode'>Country Code</label>
-                  <select
-                    id='countryCode'
-                    value={formData.mobile.countryCode}
-                    onChange={(e) => {
-                      setFormData({
-                        ...formData,
-                        mobile: {
-                          ...formData.mobile,
-                          countryCode: e.target.value,
-                        },
-                      });
+                    onClick={() => {
+                      handleLogOut();
                     }}>
-                    <option value='' disabled>
-                      Select Country Code
-                    </option>
-                    {countryList.map((country) => (
-                      <option key={country.code} value={country.dial_code}>
-                        {`${country.name} (${country.dial_code})`}
-                      </option>
+                    Log Out
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {activeItem === "My Applications" && (
+            <>
+              <div className={styles.ApplicationDashboardContainer}>
+                <div className={styles.ApplicationDashboardTable}>
+                  <div className={styles.TableHeader}>
+                    <div>
+                      <span>Job Title</span>
+                    </div>
+                    <div>
+                      <span>Company</span>
+                    </div>
+                    <div
+                      style={{
+                        textAlign: "center",
+                      }}>
+                      <span>Applied</span>
+                    </div>
+                    <div
+                      style={{
+                        textAlign: "center",
+                      }}>
+                      <span>Status</span>
+                    </div>
+                  </div>
+                  <div className={styles.TableBody}>
+                    {applicationList?.map((application) => (
+                      <ApplicationDashboardCard
+                        key={application._id}
+                        applicationData={application}
+                        // Add any other props you need
+                      />
                     ))}
-                  </select>
+                  </div>
                 </div>
-                <div className={styles.formColumn}>
-                  <label htmlFor='phone'>Phone Number</label>
-                  <input
-                    type='text'
-                    id='phone'
-                    placeholder='Phone Number'
-                    value={formData.mobile.phone}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        mobile: { ...formData.mobile, phone: e.target.value },
-                      })
-                    }
-                  />
-                </div>
+                <div className={styles.ApplicationDashboardPaging}></div>
               </div>
-            </div>
-            <div className={styles.formGroup}>
-              <div className={styles.formRow}>
-                <div className={styles.formColumn}>
-                  <label htmlFor='userSkills'>Skills</label>
-                  <Select
-                    id='userSkills'
-                    isMulti
-                    options={skillOptions}
-                    value={formData.userSkills.map((skill) => ({
-                      value: skill,
-                      label: skill,
-                    }))}
-                    onChange={(values) =>
-                      setFormData({
-                        ...formData,
-                        userSkills: values.map((value) => value.value),
-                      })
-                    }
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.formGroup}>
-              <div className={styles.formRow}>
-                <div className={styles.formColumn}>
-                  <label htmlFor='resume'>Resume</label>
-                  <input
-                    type='file'
-                    id='resume'
-                    name='resume'
-                    onChange={handleFileChange}
-                  />
-                </div>
-                <div className={styles.formColumn}>
-                  {formData.userResume && (
-                    <p
-                      className={styles.uploadedFileData}
-                      onClick={() =>
-                        window.open(formData.userResume.secure_url, "_blank")
-                      }>
-                      <BiSolidFilePdf size={34} color='#0F6AF5' />
-                      {formData.userResume.fileName} (
-                      {bytesToSize(formData.userResume.fileSize)})
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <br />
-            <div className={styles.formGroup}>
-              <div className={styles.formRow}>
-                <div className={styles.formColumn}>
-                  <button type='submit'>Update Profile</button>
-                </div>
-              </div>
-            </div>
+            </>
+          )}
+          {activeItem === "Security" && (
             <div
-              className={styles.formColumn}
               style={{
-                marginTop: "10px",
+                height: "calc(100vh - 160px)",
               }}>
-              <button
-                style={{
-                  backgroundColor: "#F2F2F2 ",
-                  color: "#38486E",
-                }}
-                onClick={() => {
-                  handleLogOut();
-                }}>
-                Log Out
-              </button>
+              <h2>Security</h2>
+              <div className={styles.formGroup}>
+                <div className={styles.formRow}>
+                  <div className={styles.formColumn}>
+                    <label htmlFor='password'>Currrent Password</label>
+                    <input
+                      type='password'
+                      id='password'
+                      placeholder='Current Password'
+                      value={passwordForm.currentPassword}
+                      onChange={(e) =>
+                        setPasswordForm({
+                          ...passwordForm,
+                          currentPassword: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+                <div className={styles.formRow}>
+                  <div className={styles.formColumn}>
+                    <label htmlFor='newPassword'>New Password</label>
+                    <input
+                      type='password'
+                      id='newPassword'
+                      placeholder='New Password'
+                      value={passwordForm.newPassword}
+                      onChange={(e) =>
+                        setPasswordForm({
+                          ...passwordForm,
+                          newPassword: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div className={styles.formRow}>
+                <div className={styles.formColumn}>
+                  <button onClick={updatePassword}>Update Password</button>
+                </div>
+              </div>
             </div>
-          </form>
+          )}
+          {activeItem === "Order History" && (
+            <>
+              <>
+                <div className={styles.ApplicationDashboardContainer}>
+                  <div className={styles.ApplicationDashboardTable}>
+                    <div className={styles.TableHeader}>
+                      <div>
+                        <span>Order No</span>
+                      </div>
+                      <div>
+                        <span>Payment Type</span>
+                      </div>
+                      <div
+                        style={{
+                          textAlign: "center",
+                        }}>
+                        <span>Applied</span>
+                      </div>
+                      <div
+                        style={{
+                          textAlign: "center",
+                        }}>
+                        <span>Status</span>
+                      </div>
+                    </div>
+                    <div className={styles.TableBody}>
+                      {response.data.paymentHistoryData?.map((payment) => (
+                        <PaymentDashboardCard
+                          key={payment._id}
+                          paymentData={payment}
+                          // Add any other props you need
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.ApplicationDashboardPaging}></div>
+                </div>
+              </>
+            </>
+          )}
         </div>
       </div>
     );
