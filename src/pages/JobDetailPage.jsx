@@ -7,10 +7,11 @@ import JobCard from "../components/JobCard";
 import ApplyModal from "../components/ApplyModal";
 import { PiMapPinBold } from "react-icons/pi";
 import { IoMdMail } from "react-icons/io";
-import { ToastContainer, toast } from "react-toastify";
+import Spinner from "../components/Spinner";
 import "react-toastify/dist/ReactToastify.css";
-
+import { ToastContainer } from "react-toastify";
 import { FiCalendar } from "react-icons/fi";
+import { BsChatLeftText } from "react-icons/bs";
 
 const jobType = (jobType) => {
   if (jobType === "FULL_TIME") {
@@ -50,7 +51,18 @@ const JobDetailPage = () => {
   // };
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100%",
+        }}>
+        <Spinner />
+      </div>
+    );
   }
 
   function formatAmount(amount) {
@@ -97,6 +109,28 @@ const JobDetailPage = () => {
           </div>
 
           <div className={styles.jobDetailHeaderRight}>
+            <div
+              onClick={() => {}}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                cursor: "pointer",
+              }}>
+              <BsChatLeftText
+                title='Message Recruiter'
+                size={24}
+                color='#38486e'
+                onClick={() => {
+                  navigate(`/message`, {
+                    state: {
+                      receiverId: `${jobData.jobPostedBy}`,
+                      receiverName: `${jobData.jobCompany.companyName}`,
+                    },
+                  });
+                }}
+              />
+            </div>
             <div className={styles.deadlineTag}>
               <FiCalendar color='#384260' size={24} />
 

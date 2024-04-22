@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import styles from "./UserDashboard.module.css";
 import SearchBar from "../components/SearchBar";
 import JobCard from "../components/JobCard";
-
+import Spinner from "../components/Spinner";
 import useAxios from "../hooks/useAxios";
 import { useAuthContext } from "../hooks/useAuthContext";
 
@@ -44,7 +44,16 @@ const UserDashboard = () => {
         </div>
         <div className={styles.jobcardrow}>
           {loading ? (
-            <h1>Loading...</h1>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "40vh",
+                width: "100%",
+              }}>
+              <Spinner />
+            </div>
           ) : (
             <>
               {response?.recommendedJobs?.map((job) => (

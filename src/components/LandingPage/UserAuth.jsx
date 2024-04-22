@@ -158,42 +158,42 @@ const UserAuth = ({ auth_mode }) => {
       });
   };
 
-  const signUpNow = async () => {
-    console.log("Sign Up Now");
-    const url = `${import.meta.env.VITE_API_URL}/api/v1/signup`; // Adjust the API endpoint
+  // const signUpNow = async () => {
+  //   console.log("Sign Up Now");
+  //   const url = `${import.meta.env.VITE_API_URL}/api/v1/signup`; // Adjust the API endpoint
 
-    if (
-      formData.name === "" ||
-      formData.email === "" ||
-      formData.password === ""
-    ) {
-      toast.error("Please fill all the fields");
-      return;
-    }
+  //   if (
+  //     formData.name === "" ||
+  //     formData.email === "" ||
+  //     formData.password === ""
+  //   ) {
+  //     toast.error("Please fill all the fields");
+  //     return;
+  //   }
 
-    const response = await axios
-      .post(url, {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      })
-      .then(function (response) {
-        console.log("res", response.data);
-        setTimeout(() => {
-          dispatch({ type: "LOGIN", payload: response.data.user });
-          localStorage.setItem(
-            "minervauser",
-            JSON.stringify(response.data.user)
-          );
-          setSignUpSteps(3);
-        }, 1200);
-      })
-      .catch(function (error) {
-        console.log(error);
-        toast.error("Hmm... 🤔 Signup didn't work. Retry?");
-      });
-    // Handle success, redirect or show a success message
-  };
+  //   const response = await axios
+  //     .post(url, {
+  //       name: formData.name,
+  //       email: formData.email,
+  //       password: formData.password,
+  //     })
+  //     .then(function (response) {
+  //       console.log("res", response.data);
+  //       setTimeout(() => {
+  //         dispatch({ type: "LOGIN", payload: response.data.user });
+  //         localStorage.setItem(
+  //           "minervauser",
+  //           JSON.stringify(response.data.user)
+  //         );
+  //         setSignUpSteps(3);
+  //       }, 1200);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //       toast.error("Hmm... 🤔 Signup didn't work. Retry?");
+  //     });
+  //   // Handle success, redirect or show a success message
+  // };
 
   const verifyEmailOtp = async () => {
     // Combine OTP input values into a single string
@@ -209,7 +209,7 @@ const UserAuth = ({ auth_mode }) => {
       )
       .then((response) => {
         toast.success("🎉 Email verified!");
-        signUpNow();
+        setSignUpSteps(3);
       })
       .catch((error) => {
         toast.error(error.response.data.message);
@@ -408,18 +408,22 @@ const UserAuth = ({ auth_mode }) => {
                   <button
                     onClick={() => verifyEmail()}
                     className={styles.submitBtn}>
-                    Sign Up
+                    Next
                   </button>
 
                   <div className={styles.socialContainer}>
                     {/* Google Sign In */}
-                    <button className={styles.googleBtn}>
+                    <button
+                      className={styles.googleBtn}
+                      onClick={() => googlelogin()}>
                       <FcGoogle size={28} />
                       Sign up with Google
                     </button>
 
                     {/* LinkedIn Sign In */}
-                    <button className={styles.linkedinBtn}>
+                    <button
+                      className={styles.linkedinBtn}
+                      onClick={linkedInLogin}>
                       <FaLinkedin size={28} color='#0A66C2' />
                       Sign up with LinkedIn
                     </button>
@@ -507,7 +511,7 @@ const UserAuth = ({ auth_mode }) => {
 
           {signUpSteps === 3 && (
             <div className={styles.modalContentRight}>
-              <AddSkills />
+              <AddSkills formData={formData} />
             </div>
           )}
         </>

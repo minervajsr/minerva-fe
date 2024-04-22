@@ -9,6 +9,11 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { BiSolidFilePdf } from "react-icons/bi";
 import { useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
+import Spinner from "../components/Spinner.jsx";
+import { AiOutlineDelete } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineAudit, AiOutlineSafety } from "react-icons/ai";
+import { CiCreditCard1 } from "react-icons/ci";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const formatDate = (dateString) => {
@@ -58,7 +63,7 @@ const formatStatus = (status) => {
             fontWeight: "600",
             fontSize: "13px",
           }}>
-          Shortlisted
+          Hired
         </span>
       );
     default:
@@ -198,6 +203,11 @@ const ProfilePage = () => {
       countryCode: "",
       phone: "",
     },
+    dob: {
+      date: "",
+      month: "",
+      year: "",
+    },
     userResume: {
       id: "",
       secure_url: "",
@@ -292,6 +302,11 @@ const ProfilePage = () => {
             fileName: response?.data?.userResume?.fileName || "",
             fileSize: response?.data?.userResume?.fileSize || 0,
           },
+          dob: {
+            date: response?.data?.dob?.date || "",
+            month: response?.data?.dob?.month || "",
+            year: response?.data?.dob?.year || "",
+          },
         });
 
         setApplicationList(response.data.jobApplications);
@@ -376,6 +391,22 @@ const ProfilePage = () => {
     "ANALYTICS",
     "ENGINEERING",
   ];
+
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "70vh",
+          width: "100%",
+        }}>
+        <Spinner />
+      </div>
+    );
+  }
+
   if (formData.userType === "USER") {
     return (
       <div className={styles.profilePageContainer}>
@@ -440,6 +471,7 @@ const ProfilePage = () => {
               <li
                 className={activeItem === "Profile" ? styles.current : ""}
                 onClick={() => setActiveItem("Profile")}>
+                <AiOutlineUser size={20} />
                 Profile
               </li>
               <li
@@ -447,22 +479,25 @@ const ProfilePage = () => {
                   activeItem === "My Applications" ? styles.current : ""
                 }
                 onClick={() => setActiveItem("My Applications")}>
+                <AiOutlineAudit size={20} />
                 My Applications
               </li>
               <li
                 className={activeItem === "Security" ? styles.current : ""}
                 onClick={() => setActiveItem("Security")}>
+                <AiOutlineSafety size={20} />
                 Security
               </li>
               <li
                 className={activeItem === "Order History" ? styles.current : ""}
                 onClick={() => setActiveItem("Order History")}>
+                <CiCreditCard1 size={20} />
                 Order History
               </li>
             </ul>
             <div
               style={{
-                marginTop: "253px",
+                marginTop: "205px",
                 display: "flex",
                 flexDirection: "column",
                 gap: "16px",
@@ -514,45 +549,89 @@ const ProfilePage = () => {
                 <div className={styles.formGroup}>
                   <div className={styles.formRow}>
                     <div className={styles.formColumn}>
-                      <label htmlFor='countryCode'>Country Code</label>
-                      <select
-                        id='countryCode'
-                        value={formData.mobile.countryCode}
-                        onChange={(e) => {
-                          setFormData({
-                            ...formData,
-                            mobile: {
-                              ...formData.mobile,
-                              countryCode: e.target.value,
-                            },
-                          });
-                        }}>
-                        <option value='' disabled>
-                          Select Country Code
-                        </option>
-                        {countryList.map((country) => (
-                          <option key={country.code} value={country.dial_code}>
-                            {`${country.name} (${country.dial_code})`}
+                      <label htmlFor='phone'>Phone Number</label>
+                      <div className={styles.phoneSection}>
+                        <select
+                          style={{
+                            width: "35%",
+                          }}
+                          id='countryCode'
+                          value={formData.mobile.countryCode}
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              mobile: {
+                                ...formData.mobile,
+                                countryCode: e.target.value,
+                              },
+                            });
+                          }}>
+                          <option value='' disabled>
+                            Select Country Code
                           </option>
-                        ))}
-                      </select>
+                          {countryList.map((country) => (
+                            <option
+                              key={country.code}
+                              value={country.dial_code}>
+                              {`(${country.dial_code}) ${country.name} `}
+                            </option>
+                          ))}
+                        </select>
+                        <input
+                          className={styles.phoneInput}
+                          style={{
+                            width: "60%",
+                            padding: "12px",
+                            borderRadius: "12px",
+                            border: "2px solid #eff0f6",
+                            background: "#fff",
+                            color: "#8897ad",
+                            fontFeatureSettings: "'clig' off, 'liga' off",
+                            fontFamily: "Poppins",
+                            fontSize: "13px",
+                            fontStyle: "normal",
+                            fontWeight: "400",
+                            lineHeight: "100%",
+                            letterSpacing: "0.16px",
+                            marginLeft: "10px",
+                          }}
+                          type='text'
+                          id='phone'
+                          placeholder='Phone Number'
+                          value={formData.mobile.phone}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              mobile: {
+                                ...formData.mobile,
+                                phone: e.target.value,
+                              },
+                            })
+                          }
+                        />
+                      </div>
                     </div>
                     <div className={styles.formColumn}>
-                      <label htmlFor='phone'>Phone Number</label>
+                      {console.log(
+                        `${formData.dob.year}-${formData.dob.month}-${formData.dob.date}`
+                      )}
+                      <label htmlFor='dob'>Date of Birth</label>
                       <input
-                        type='text'
-                        id='phone'
-                        placeholder='Phone Number'
-                        value={formData.mobile.phone}
-                        onChange={(e) =>
+                        type='date'
+                        placeholder='DD/MM/YYYY'
+                        id='dob'
+                        value={`${formData.dob.year}-${formData.dob.month}-${formData.dob.date}`}
+                        onChange={(e) => {
+                          console.log(e.target.value);
                           setFormData({
                             ...formData,
-                            mobile: {
-                              ...formData.mobile,
-                              phone: e.target.value,
+                            dob: {
+                              date: e.target.value.split("-")[2],
+                              month: e.target.value.split("-")[1],
+                              year: e.target.value.split("-")[0],
                             },
-                          })
-                        }
+                          });
+                        }}
                       />
                     </div>
                   </div>
@@ -592,18 +671,61 @@ const ProfilePage = () => {
                       />
                     </div>
                     <div className={styles.formColumn}>
-                      {formData.userResume && (
+                      {formData.userResume &&
+                      formData.userResume.fileSize > 0 ? (
+                        <div
+                          style={{
+                            position: "relative",
+                          }}>
+                          <div
+                            onClick={() =>
+                              setFormData({
+                                ...formData,
+                                userResume: {
+                                  id: "",
+                                  secure_url: "",
+                                  fileName: "",
+                                  fileSize: 0,
+                                },
+                              })
+                            }
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              position: "absolute",
+                              right: "-13px",
+                              top: "20px",
+                              cursor: "pointer",
+                              backgroundColor: "#F44336",
+                              padding: "6px",
+                              borderRadius: "50%",
+                              boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                            }}>
+                            <AiOutlineDelete size={20} color='#fff' />
+                          </div>
+                          <p
+                            className={styles.uploadedFileData}
+                            onClick={() =>
+                              window.open(
+                                formData.userResume.secure_url,
+                                "_blank"
+                              )
+                            }>
+                            <BiSolidFilePdf size={34} color='#0F6AF5' />
+                            {formData.userResume.fileName} (
+                            {bytesToSize(formData.userResume.fileSize)})
+                          </p>
+                        </div>
+                      ) : (
                         <p
                           className={styles.uploadedFileData}
-                          onClick={() =>
-                            window.open(
-                              formData.userResume.secure_url,
-                              "_blank"
-                            )
-                          }>
+                          style={{
+                            cursor: "not-allowed",
+                            color: "#6F6C90",
+                            padding: "14px 0px",
+                          }}>
                           <BiSolidFilePdf size={34} color='#0F6AF5' />
-                          {formData.userResume.fileName} (
-                          {bytesToSize(formData.userResume.fileSize)})
+                          No Resume
                         </p>
                       )}
                     </div>
@@ -614,27 +736,21 @@ const ProfilePage = () => {
                 <div className={styles.formGroup}>
                   <div className={styles.formRow}>
                     <div className={styles.formColumn}>
+                      <button
+                        style={{
+                          backgroundColor: "#F2F2F2 ",
+                          color: "#38486E",
+                        }}
+                        onClick={() => {
+                          window.open("/dashboard", "_self");
+                        }}>
+                        Go To Home
+                      </button>
+                    </div>
+                    <div className={styles.formColumn}>
                       <button type='submit'>Update Profile</button>
-                      {/* <br />
-                  <button onClick={checkoutPayment}>Pay Premium</button> */}
                     </div>
                   </div>
-                </div>
-                <div
-                  className={styles.formColumn}
-                  style={{
-                    marginTop: "10px",
-                  }}>
-                  <button
-                    style={{
-                      backgroundColor: "#F2F2F2 ",
-                      color: "#38486E",
-                    }}
-                    onClick={() => {
-                      handleLogOut();
-                    }}>
-                    Log Out
-                  </button>
                 </div>
               </form>
             </>

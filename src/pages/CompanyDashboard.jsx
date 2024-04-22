@@ -179,13 +179,49 @@ const CompanyDashboard = () => {
           gap: "20px",
           height: "calc(100vh - 80px)",
         }}>
+        <div
+          className={styles.CompanyDashboardControls}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            alignItems: "center",
+            padding: "0 6%",
+            marginBottom: "20px",
+          }}>
+          <div className={styles.CompanyDashboardControlsLeft}>
+            <SwitchComp
+              firstOption='Open'
+              setOption={setJobListStatus}
+              secondOption='Closed'
+              size={"small"}
+            />
+          </div>
+          <div className={styles.CompanyDashboardControlsRight}>
+            <div className={styles.searchContainer}>
+              <FiSearch className={styles.SearchBarIcon} />
+              <input
+                type='text'
+                placeholder='Search'
+                onChange={(e) => handleSearch(e.target.value)}
+              />
+              {/* <button>Search</button> */}
+            </div>
+            <div>
+              <button
+                className={styles.button}
+                onClick={() => navigate("/company/post-job")}>
+                Post a Job
+              </button>
+            </div>
+          </div>
+        </div>
         <img
           src={nojobpost}
           alt=''
           style={{
             width: "26%",
             objectFit: "contain",
-            marginBottom: "-40px",
           }}
         />
         <h2
@@ -195,13 +231,13 @@ const CompanyDashboard = () => {
             color: "#364152",
           }}>
           {" "}
-          No Job Post Found In this Account!{" "}
+          No Job Post Found !
         </h2>
-        <button
+        {/* <button
           className={styles.button}
           onClick={() => navigate("/company/post-job")}>
           Post a Job
-        </button>
+        </button> */}
       </div>
     );
   }

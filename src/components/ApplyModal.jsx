@@ -338,7 +338,14 @@ const ApplyModal = ({
             </form>
             <div className={styles.buttons}>
               <button onClick={onClose}>Cancel</button>
-              <button onClick={handleSubmit}>Apply</button>
+              <button
+                onClick={handleSubmit}
+                style={{
+                  backgroundColor: "#007bff",
+                  color: "white",
+                }}>
+                Apply
+              </button>
             </div>
           </>
         )}

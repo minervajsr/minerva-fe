@@ -60,7 +60,15 @@ const NavBar = () => {
 
   return (
     <div className={styles.NavBarContainer}>
-      <img src={logo} alt='' width='150px' />
+      <img
+        src={logo}
+        alt=''
+        style={{
+          cursor: "pointer",
+        }}
+        width='150px'
+        onClick={() => navigate("/dashboard")}
+      />
       <div className={styles.NavBarItemsContainer}>
         <div className={styles.NavBarItem}>{/* <BiSupport size={20} /> */}</div>
         <div className={styles.NavBarItem}>

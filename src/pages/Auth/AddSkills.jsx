@@ -6,7 +6,7 @@ import axios from "axios";
 import styles from "./AddSkills.module.css";
 import Select from "react-select";
 import skillOptions from "../../constants/skillOptions.js";
-const AddSkills = () => {
+const AddSkills = ({ formData }) => {
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
@@ -18,27 +18,39 @@ const AddSkills = () => {
     setSelectedSkills(selectedOptions);
   };
 
-  const updateProfile = async (skills) => {
-    const url = `${import.meta.env.VITE_API_URL}/api/v1/user/update`;
+  const createUser = async () => {
+    console.log("Sign Up Now");
+    const url = `${import.meta.env.VITE_API_URL}/api/v1/signup`; // Adjust the API endpoint
+
+    if (
+      formData.name === "" ||
+      formData.email === "" ||
+      formData.password === ""
+    ) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     const response = await axios
-      .post(
-        url,
-        {
-          userSkills: skills.map((skills) => skills.value),
-          id: user._id,
-        },
-        {
-          withCredentials: true, // Include withCredentials configuration for this request
-        }
-      )
+      .post(url, {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        userSkills: selectedSkills.map((skill) => skill.value),
+      })
       .then(function (response) {
-        console.log(response.data);
-        dispatch({ type: "LOGIN", payload: response.data.user });
-        localStorage.setItem("minervauser", JSON.stringify(response.data.user));
-        navigate("/dashboard");
+        console.log("res", response.data);
+        setTimeout(() => {
+          dispatch({ type: "LOGIN", payload: response.data.user });
+          localStorage.setItem(
+            "minervauser",
+            JSON.stringify(response.data.user)
+          );
+          setSignUpSteps(3);
+        }, 1200);
       })
       .catch(function (error) {
         console.log(error);
+        toast.error("Hmm... 🤔 Signup didn't work. Retry?");
       });
   };
 
@@ -89,7 +101,7 @@ const AddSkills = () => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            updateProfile(selectedSkills);
+            createUser();
           }}>
           Done
         </button>

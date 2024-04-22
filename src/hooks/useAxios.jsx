@@ -3,20 +3,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
-axios.defaults.withCredentials = true;
-// console.log("BASE URL", import.meta.env.VITE_API_URL);
-
-//Get token from local storage
-
-const user = JSON.parse(localStorage.getItem("minervauser"));
-
-//Set token to header
-
-console.log("User", user, user?.token);
-
-axios.defaults.headers.common["Authorization"] = `Bearer ${user?.token || ""}`;
-
 const useAxios = (
   { url, method, body = null, headers = null },
   reload = null
@@ -24,6 +10,16 @@ const useAxios = (
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setloading] = useState(true);
+
+  const user = JSON.parse(localStorage.getItem("minervauser"));
+
+  axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}`;
+  axios.defaults.withCredentials = true;
+
+  axios.defaults.headers.common["Authorization"] = `Bearer ${
+    user?.token || ""
+  }`;
+  // console.log("User FROM AXIOS", user, user?.token);
 
   const fetchData = () => {
     axios[method](
