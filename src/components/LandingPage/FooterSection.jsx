@@ -19,8 +19,9 @@ const FooterSection = () => {
         <div className={styles.footerRow}>
           <img src={logo} alt='Logo' className={styles.logo} />
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            vehicula euismod ex, non malesuada orci.
+            (LAST UPDATE: 22/04/2022 6:00 PM) Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Curabitur vehicula euismod ex, non
+            malesuada orci.
           </p>
         </div>
         <div className={styles.footerRow}>
