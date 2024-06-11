@@ -59,7 +59,10 @@ function App() {
             Authorization: `Bearer ${user.token}`,
           },
         });
-        if (response.status !== 200) {
+        if (
+          response.status !== 200 &&
+          !routesWithoutAuth.includes(window.location.pathname)
+        ) {
           navigate("/");
         }
         if (response.status === 200 && window.location.pathname === "/") {
@@ -68,7 +71,9 @@ function App() {
       }
     } catch (error) {
       console.error(error);
-      navigate("/");
+      if (!routesWithoutAuth.includes(window.location.pathname)) {
+        navigate("/");
+      }
     }
   };
 
